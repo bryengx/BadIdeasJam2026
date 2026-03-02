@@ -5,10 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputHandler))]
 public class PlayerController2D : MonoBehaviour
 {
+    [Header("Swithes")]
+    public bool canJump = true;
+    public bool canAirJump = false;
+    public bool canDash = false;
+    public bool canWallJump = false;
+    public bool canStickToWalls = false;
+    public bool canClimb = false;
+    public bool revertGravity = false;
+
     [Header("Movement")]
     public float moveSpeed = 8f;
     public float acceleration = 60f;
     public float airAcceleration = 5f;
+    public float maxFallSpeed = 5f;
 
     [Header("Jump")]
     public float jumpForce = 16f;
@@ -48,7 +58,8 @@ public class PlayerController2D : MonoBehaviour
 
     bool isGrounded;
     bool isDashing;
-    bool isWallSticking;
+    bool isWallSticking; 
+    int gravityDirection = -1;
 
     bool topHit, midHit, bottomLowHit, bottomHighHit;
     int wallDirection;
@@ -70,11 +81,13 @@ public class PlayerController2D : MonoBehaviour
     int jumpCount;
     float defaultGravity;
     public TextMeshPro debugText;
+    InteractionHandler interactionHandler;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInputHandler>();
+        interactionHandler = GetComponentInChildren<InteractionHandler>();
         defaultGravity = rb.gravityScale;
     }
 
@@ -84,10 +97,13 @@ public class PlayerController2D : MonoBehaviour
         HandleTimers();
         HandleWallLogic();
         HandleDash();
+        HandleInteraction();
     }
 
     void FixedUpdate()
     {
+        UpdateGravityState();
+
         HandleJump();
 
         if (dashRequested)
@@ -105,6 +121,24 @@ public class PlayerController2D : MonoBehaviour
         HandleMovement();
         HandleJumpCut();
         HandleBetterGravity();
+    }
+    void UpdateGravityState()
+    {
+        gravityDirection = revertGravity ? -1 : 1;
+        defaultGravity = Mathf.Abs(defaultGravity) * gravityDirection;
+        //rb.gravityScale = Mathf.Abs(defaultGravity) * gravityDirection;
+
+        // Flip player vertically
+        Vector3 scale = transform.localScale;
+        scale.y = Mathf.Abs(scale.y) * (revertGravity ? -1 : 1);
+        transform.localScale = scale;
+    }
+    void HandleInteraction()
+    {
+        if (input.ActionPressed)
+        {
+            interactionHandler.Interact();
+        }
     }
 
     void CheckCollisions()
@@ -156,7 +190,7 @@ public class PlayerController2D : MonoBehaviour
         rb.linearVelocity = new Vector2(rb.linearVelocity.x + movement, rb.linearVelocity.y);
 
         if (input.MoveInput.x != 0)
-            transform.localScale = new Vector3(Mathf.Sign(input.MoveInput.x), 1, 1);
+            transform.localScale = new Vector3(Mathf.Sign(input.MoveInput.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
     void HandleWallLogic()
@@ -174,11 +208,11 @@ public class PlayerController2D : MonoBehaviour
             lastWallNormal = new Vector2(-wallDirection, 0f);
         }
 
-        bool canStick = !isGrounded && pressingTowardWall && fullyAttached && wallStickDisableTimer <= 0f;
+        bool canStick = canStickToWalls && !isGrounded && pressingTowardWall && fullyAttached && wallStickDisableTimer <= 0f;
 
         if (canStick)
         {
-            bool rising = rb.linearVelocity.y > 0f;
+            bool rising = rb.linearVelocity.y * gravityDirection > 0f;
 
             if (rising && input.JumpHeld)
             {
@@ -199,7 +233,7 @@ public class PlayerController2D : MonoBehaviour
         }
 
         // CLIMB ASSIST
-        if (rb.linearVelocity.y < 2 && pressingTowardWall && bottomLowHit && !midHit && !topHit)
+        if (canClimb && rb.linearVelocity.y * gravityDirection < 2 && pressingTowardWall && bottomLowHit && !midHit && !topHit)
         {
             float forceMultiplier = bottomHighHit ? 2f : 1f;
 
@@ -225,22 +259,22 @@ public class PlayerController2D : MonoBehaviour
             return;
 
         // WALL COYOTE JUMP
-        if (wallCoyoteTimer > 0f)
+        if (canWallJump && wallCoyoteTimer > 0f)
         {
             PerformWallJump();
             lastJumpPressedTime = 0;
             return;
         }
 
-        if (lastGroundedTime > 0)
+        if (canJump && lastGroundedTime > 0)
         {
-            Jump(Vector2.up);
+            Jump(Vector2.up * gravityDirection);
             return;
         }
 
-        if (jumpCount < maxJumps)
+        if (canAirJump && jumpCount < maxJumps)
         {
-            Jump(Vector2.up);
+            Jump(Vector2.up * gravityDirection);
         }
     }
 
@@ -251,7 +285,7 @@ public class PlayerController2D : MonoBehaviour
         rb.gravityScale = defaultGravity;
         rb.linearVelocity = Vector2.zero;
 
-        Vector2 force = new Vector2(lastWallNormal.x * wallJumpForce.x, wallJumpForce.y);
+        Vector2 force = new Vector2(lastWallNormal.x * wallJumpForce.x, wallJumpForce.y * -gravityDirection);
 
         rb.AddForce(force, ForceMode2D.Impulse);
 
@@ -271,7 +305,7 @@ public class PlayerController2D : MonoBehaviour
 
     void HandleDash()
     {
-        if (dashCooldownTimer > 0)
+        if (!canDash || dashCooldownTimer > 0)
             return;
 
         if (input.DashPressed && !isDashing)
@@ -311,23 +345,28 @@ public class PlayerController2D : MonoBehaviour
     void HandleJumpCut()
     {
         // If player released jump while moving upward
-        if (!input.JumpHeld && rb.linearVelocity.y > 0f)
+        if (!input.JumpHeld && rb.linearVelocity.y * gravityDirection > 0f)
         {
             rb.linearVelocity = new Vector2(
                 rb.linearVelocity.x,
-                rb.linearVelocity.y * jumpCutMultiplier
+                rb.linearVelocity.y * gravityDirection * jumpCutMultiplier
             );
         }
     }
     void HandleBetterGravity()
     {
-        if (rb.linearVelocity.y < 0f)
+        float velocityY = rb.linearVelocity.y;
+        if (rb.linearVelocity.y * gravityDirection < 0f)
         {
             rb.gravityScale = defaultGravity * fallGravityMultiplier;
+
+            if (velocityY < -maxFallSpeed)
+                velocityY = -maxFallSpeed;
         }
         else if (!isWallSticking && !isDashing)
         {
             rb.gravityScale = defaultGravity;
         }
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, velocityY);
     }
 }

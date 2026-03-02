@@ -7,6 +7,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpPressed { get; private set; }
     public bool JumpHeld { get; private set; }
     public bool DashPressed { get; private set; }
+    public bool ActionPressed { get; private set; }
 
     PlayerInputActions inputActions;
 
@@ -34,6 +35,8 @@ public class PlayerInputHandler : MonoBehaviour
         };
 
         inputActions.Player.Dash.performed += ctx => DashPressed = true;
+
+        inputActions.Player.Action.performed += ctx => ActionPressed = true;
     }
 
     void LateUpdate()
@@ -41,6 +44,7 @@ public class PlayerInputHandler : MonoBehaviour
         // Clear one-frame inputs
         JumpPressed = false;
         DashPressed = false;
+        ActionPressed = false;
     }
 
     void OnDisable()
