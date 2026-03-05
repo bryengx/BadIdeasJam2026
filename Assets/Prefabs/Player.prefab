@@ -353,7 +353,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5623194428626525839, guid: b683549905de5984b9f99a6601a31631, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -695,7 +695,7 @@ MonoBehaviour:
   moveSpeed: 6
   acceleration: 60
   airAcceleration: 5
-  maxFallSpeed: 25
+  maxFallSpeed: 20
   jumpForce: 18
   maxJumps: 2
   coyoteTime: 0.1

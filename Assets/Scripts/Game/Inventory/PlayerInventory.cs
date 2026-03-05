@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -51,5 +52,16 @@ public class PlayerInventory : MonoBehaviour
         }
 
         return 0;
+    }
+
+    internal bool HasItem(InventoryItem keyItem)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.item == keyItem)
+                return true;
+        }
+
+        return false;
     }
 }

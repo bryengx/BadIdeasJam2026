@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -82,6 +83,7 @@ public class PlayerController2D : MonoBehaviour
     float defaultGravity;
     public TextMeshPro debugText;
     InteractionHandler interactionHandler;
+    PlayerInventory playerInventory;
 
     void Awake()
     {
@@ -89,6 +91,7 @@ public class PlayerController2D : MonoBehaviour
         input = GetComponent<PlayerInputHandler>();
         interactionHandler = GetComponentInChildren<InteractionHandler>();
         defaultGravity = rb.gravityScale;
+        playerInventory = GetComponentInChildren<PlayerInventory>();
     }
 
     void Update()
@@ -368,5 +371,15 @@ public class PlayerController2D : MonoBehaviour
             rb.gravityScale = defaultGravity;
         }
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, velocityY);
+    }
+
+    internal bool HasItem(InventoryItem keyItem)
+    {
+        return playerInventory.HasItem(keyItem);
+    }
+
+    internal void RemoveItem(InventoryItem keyItem)
+    {
+        playerInventory.RemoveItem(keyItem, 1);
     }
 }
