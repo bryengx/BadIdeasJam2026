@@ -1,110 +1,115 @@
+using Codice.Client.Commands;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static DialogOnTrigger;
 
 public class Dialog : MonoBehaviour
 {
-    [Serializable]
-    public class Text
-    {
-        [TextArea]
-        public string text;
-        [HideInInspector] public bool read;
-    }
-    [Serializable]
-    public class SpeakerInfo
-    {
-        public string name;
-        public Text[] text;
-    }
-
-    public static Action<string> OnTriggerDialog;
-
-    [SerializeField] private string _id;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private Image charImag;
+    [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float msgDuration = 3f;
-    [SerializeField] SpeakerInfo[] dialogs;
 
-    private void OnValidate()
-    {
-        if(dialogs.Length > 2)
-        {
-            Array.Resize(ref dialogs, 2);
-            Debug.LogWarning("2 arrays only!");
-        }
+    private Queue<SpeakerInfo[]> dialogsQueued = new Queue<SpeakerInfo[]>();
+    private bool showingText = false;
 
-        if (_id == string.Empty) Debug.LogWarning("Set dialog id!");
-        Dialog[] dialogscripts = GameObject.FindObjectsByType<Dialog>(FindObjectsInactive.Exclude,FindObjectsSortMode.None);
-        foreach(Dialog dialog in dialogscripts)
-        {
-            if (dialog == this) continue;
-
-            if(dialog._id == _id)
-            {
-                Debug.LogError("Found an instance with the same id as this");
-            }
-        }
-    }
     private void Awake()
     {
         canvas.SetActive(false);
+        
+    }
+    private void OnEnable()
+    {
         OnTriggerDialog += StartDialog;
     }
     private void OnDisable()
     {
         OnTriggerDialog -= StartDialog;
     }
-    private void Start()
-    {
-        StartDialog(_id);
-    }
 
-    private void StartDialog(string recId)
+    public void StartDialog(SpeakerInfo[] dialInfo, bool highPriority)
     {
-        if (recId != _id) return;
-
+        if (dialInfo.Length == 0)
+        {
+            Debug.LogError("Populate dialog!");
+            return;
+        }
+        if (showingText)
+        {
+            if (highPriority)
+            {
+                StopAllCoroutines();
+                dialogsQueued = new Queue<SpeakerInfo[]>();
+                Debug.Log("Clearing queue!");
+            }
+            else
+            {
+                Debug.Log("Queueng..");
+                dialogsQueued.Enqueue(dialInfo);
+                return;
+            }
+        }
+        
+        showingText = true;
         canvas.SetActive(true);
-        StartCoroutine(ShowDialog());
+        StartCoroutine(ShowDialog(dialInfo));
     }
-    private IEnumerator ShowDialog()
+
+    private IEnumerator ShowDialog(SpeakerInfo[] dialogs)
     {
-        if (dialogs.Length < 2)
+        if (dialogs.Length == 0)
         {
             Debug.LogError("Populate dialog!");
         }
         else
         {
             int index = 0;
-            while (DialogFinished() == false)
+            while (DialogFinished(dialogs) == false)
             {
                 SpeakerInfo speaker = dialogs[index];
 
                 string txt = string.Empty;
-                foreach (Text t in speaker.text)
+                foreach (DialogOnTrigger.Text t in speaker.text)
                 {
                     if (t.read)
                     {
                         continue;
                     }
                     t.read = true;
-                    txt = speaker.name + ": " + t.text;
+                    txt = t.text;
                     break;
                 }
                 if (txt != string.Empty)
                 {
                     textMesh.text = txt;
+                    nameText.text = speaker.name;
+                    charImag.sprite = speaker.charImage;
                     yield return new WaitForSeconds(msgDuration);
                 }
-                index = index == 0 ? 1 : 0;
+                if(dialogs.Length >1) index = index == 0 ? 1 : 0;
 
                 yield return null;
             }
         }
-        canvas.SetActive(false);
+
+        showingText = false;
+        if ( dialogsQueued.Count > 0 )
+        {
+            Debug.Log("Dequeueing!");
+            StartDialog(dialogsQueued.Dequeue(), false);
+        }
+        else
+        {
+            canvas.SetActive(false);
+        }
+        
     }
-    private bool DialogFinished()
+    private bool DialogFinished(SpeakerInfo[] dialogs)
     {
         int finished = 0;
 
@@ -119,13 +124,13 @@ public class Dialog : MonoBehaviour
                 return true;
             }
 
-            foreach (Text t in speaker.text)
+            foreach (DialogOnTrigger.Text t in speaker.text)
             {
                 if (t.read) i++;
             }
             if (i == count) finished++;
         }
 
-        return finished == 2;
+        return finished == dialogs.Length;
     }
 }
