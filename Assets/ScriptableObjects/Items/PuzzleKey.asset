@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
   itemName: Key
   description: There must be a door for this...
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: -1966564465, guid: 242ac89cf56b7a14988120e220929a4b, type: 3}
   isStackable: 0

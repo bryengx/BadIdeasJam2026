@@ -1,4 +1,3 @@
-using Codice.Client.Commands;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,6 +61,7 @@ public class Dialog : MonoBehaviour
 
     private IEnumerator ShowDialog(SpeakerInfo[] dialogs)
     {
+        //InventoryUI.instance.Hide();
         if (dialogs.Length == 0)
         {
             Debug.LogError("Populate dialog!");
@@ -111,6 +111,7 @@ public class Dialog : MonoBehaviour
     }
     private bool DialogFinished(SpeakerInfo[] dialogs)
     {
+        //InventoryUI.instance.Show();
         int finished = 0;
 
         foreach (SpeakerInfo speaker in dialogs)

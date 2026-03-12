@@ -84,6 +84,7 @@ public class PlayerController2D : MonoBehaviour
     public TextMeshPro debugText;
     InteractionHandler interactionHandler;
     PlayerInventory playerInventory;
+    Animator animator;
 
     void Awake()
     {
@@ -92,8 +93,12 @@ public class PlayerController2D : MonoBehaviour
         interactionHandler = GetComponentInChildren<InteractionHandler>();
         defaultGravity = rb.gravityScale;
         playerInventory = GetComponentInChildren<PlayerInventory>();
+        animator = GetComponent<Animator>();
     }
-
+    private void Start()
+    {
+        InventoryUI.instance.UpdateUI(playerInventory.slots);
+    }
     void Update()
     {
         CheckCollisions();
@@ -101,6 +106,7 @@ public class PlayerController2D : MonoBehaviour
         HandleWallLogic();
         HandleDash();
         HandleInteraction();
+        UpdateAnimations();
     }
 
     void FixedUpdate()
@@ -124,6 +130,12 @@ public class PlayerController2D : MonoBehaviour
         HandleMovement();
         HandleJumpCut();
         HandleBetterGravity();
+    }
+    void UpdateAnimations()
+    {
+        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
     }
     void UpdateGravityState()
     {

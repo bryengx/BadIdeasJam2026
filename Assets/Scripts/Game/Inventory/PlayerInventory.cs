@@ -18,6 +18,7 @@ public class PlayerInventory : MonoBehaviour
                 if (slot.item == item)
                 {
                     slot.Add(amount);
+                    InventoryUI.instance.UpdateUI(slots);
                     return;
                 }
             }
@@ -25,6 +26,7 @@ public class PlayerInventory : MonoBehaviour
 
         InventorySlot newSlot = new InventorySlot(item, amount);
         slots.Add(newSlot);
+        InventoryUI.instance.UpdateUI(slots);
     }
 
     public void RemoveItem(InventoryItem item, int amount = 1)
@@ -38,6 +40,7 @@ public class PlayerInventory : MonoBehaviour
                 if (slot.IsEmpty())
                     slots.Remove(slot);
 
+                InventoryUI.instance.UpdateUI(slots);
                 return;
             }
         }
