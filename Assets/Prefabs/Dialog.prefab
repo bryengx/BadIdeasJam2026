@@ -475,7 +475,8 @@ MonoBehaviour:
   charImag: {fileID: 6613904278248706991}
   nameText: {fileID: 9084092624483236731}
   textMesh: {fileID: 7873392828135707207}
-  msgDuration: 3
+  playerSprite: {fileID: -5623194428626525839, guid: b683549905de5984b9f99a6601a31631, type: 3}
+  playerName: Stacy
 --- !u!1 &7948633119536613285
 GameObject:
   m_ObjectHideFlags: 0

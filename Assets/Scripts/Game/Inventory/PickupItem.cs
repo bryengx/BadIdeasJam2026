@@ -3,7 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PickupItem : MonoBehaviour
 {
-    [SerializeField] private DialogOnTrigger.SpeakerInfo notify;
+    
+     private DialogOnTrigger.SpeakerInfo notify;
     public InventoryItem item;
     public int amount = 1;
 
@@ -15,10 +16,15 @@ public class PickupItem : MonoBehaviour
         {
             inventory.AddItem(item, amount);
             notify.text[0].text = "I found a " + item.name;
-            DialogOnTrigger.SpeakerInfo[] d = new DialogOnTrigger.SpeakerInfo[1] { notify };
+            notify.isPlayerOnly = true;
 
-            DialogOnTrigger.OnTriggerDialog?.Invoke(d, true);
+            ShowDialog();
             Destroy(gameObject);
         }
+    }
+    private void ShowDialog()
+    {
+        DialogOnTrigger.SpeakerInfo[] d = new DialogOnTrigger.SpeakerInfo[1] { notify };
+        DialogOnTrigger.OnTriggerDialog?.Invoke(d, true);
     }
 }

@@ -6,6 +6,8 @@ public class DialogOnTrigger : MonoBehaviour
     [Serializable]
     public class Text
     {
+        public float msgDuration = 3;
+
         [TextArea]
         public string text;
         [HideInInspector] public bool read;
@@ -14,6 +16,8 @@ public class DialogOnTrigger : MonoBehaviour
     public class SpeakerInfo
     {
         public string name;
+        [Tooltip("Will this dialog only be for the player? (If so name or char image is not required")]
+        public bool isPlayerOnly;
         public Sprite charImage;
         public Text[] text;
     }
@@ -23,6 +27,25 @@ public class DialogOnTrigger : MonoBehaviour
     [SerializeField] bool isHighPriority = false;
 
     private bool debounce = false;
+
+    private void Awake()
+    {
+        if(dialogs.Length > 0)
+        {
+            for (int i = 0; i < dialogs.Length; i++)
+            {
+                SpeakerInfo speaker = dialogs[i];
+                if (speaker.isPlayerOnly == false && (speaker.charImage == null || speaker.name == string.Empty))
+                {
+                    Debug.LogWarning("Image required for dialog index " + i);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Dialog is empty!");
+        }
+    }
     private void OnValidate()
     {
         if (dialogs.Length > 2)

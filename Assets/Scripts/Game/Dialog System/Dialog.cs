@@ -13,7 +13,11 @@ public class Dialog : MonoBehaviour
     [SerializeField] private Image charImag;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI textMesh;
-    [SerializeField] private float msgDuration = 3f;
+
+    [Space(20)]
+    [Header("Player defaults")]
+    [SerializeField] private Sprite playerSprite;
+    [SerializeField] private string playerName;
 
     private Queue<SpeakerInfo[]> dialogsQueued = new Queue<SpeakerInfo[]>();
     private bool showingText = false;
@@ -21,7 +25,14 @@ public class Dialog : MonoBehaviour
     private void Awake()
     {
         canvas.SetActive(false);
-        
+        if(playerSprite == null)
+        {
+            Debug.LogWarning("Player sprite is not assigned!");
+        }
+        if(playerName == string.Empty)
+        {
+            Debug.LogWarning("Player name is not set");
+        }
     }
     private void OnEnable()
     {
@@ -74,6 +85,8 @@ public class Dialog : MonoBehaviour
                 SpeakerInfo speaker = dialogs[index];
 
                 string txt = string.Empty;
+                float dur = 0;
+
                 foreach (DialogOnTrigger.Text t in speaker.text)
                 {
                     if (t.read)
@@ -82,14 +95,24 @@ public class Dialog : MonoBehaviour
                     }
                     t.read = true;
                     txt = t.text;
+                    dur = t.msgDuration;
                     break;
                 }
                 if (txt != string.Empty)
                 {
                     textMesh.text = txt;
-                    nameText.text = speaker.name;
-                    charImag.sprite = speaker.charImage;
-                    yield return new WaitForSeconds(msgDuration);
+                    if (speaker.isPlayerOnly)
+                    {
+                        nameText.text = playerName;
+                        charImag.sprite = playerSprite;
+                    }
+                    else
+                    {
+                        nameText.text = speaker.name;
+                        charImag.sprite = speaker.charImage;
+                    }
+                        
+                    yield return new WaitForSeconds(dur);
                 }
                 if(dialogs.Length >1) index = index == 0 ? 1 : 0;
 
