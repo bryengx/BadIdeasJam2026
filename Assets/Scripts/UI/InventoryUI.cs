@@ -36,9 +36,12 @@ public class InventoryUI : MonoBehaviour
         }
 
         slotUIs.Clear();
+        slotParent.parent.gameObject.SetActive(count > 0);
 
         RectTransform rect = slotParent.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(count * 70f, rect.sizeDelta.y);
+        rect = slotParent.parent.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(count * 70f + 10f, rect.sizeDelta.y);
 
         while (slotUIs.Count < count)
         {

@@ -14,6 +14,7 @@ public class PlayerController2D : MonoBehaviour
     public bool canStickToWalls = false;
     public bool canClimb = false;
     public bool revertGravity = false;
+    public bool canMove = true;
 
     [Header("Movement")]
     public float moveSpeed = 8f;
@@ -103,8 +104,11 @@ public class PlayerController2D : MonoBehaviour
     {
         CheckCollisions();
         HandleTimers();
-        HandleWallLogic();
-        HandleDash();
+        if (canMove)
+        {
+            HandleWallLogic();
+            HandleDash();
+        }
         HandleInteraction();
         UpdateAnimations();
     }
@@ -126,9 +130,12 @@ public class PlayerController2D : MonoBehaviour
             PerformDash();
             return;
         }
+        if (canMove)
+        {
+            HandleMovement();
+            HandleJumpCut();
+        }
 
-        HandleMovement();
-        HandleJumpCut();
         HandleBetterGravity();
     }
     void UpdateAnimations()
@@ -174,7 +181,7 @@ public class PlayerController2D : MonoBehaviour
             jumpCount = 0;
         }
 
-        if (input.JumpPressed)
+        if (input.JumpPressed && canMove)
             lastJumpPressedTime = jumpBufferTime;
     }
 
