@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class PickupItem : MonoBehaviour
+public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogOnTrigger.SpeakerInfo notify;
     public InventoryItem item;
@@ -11,7 +11,27 @@ public class PickupItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerInventory inventory = other.GetComponent<PlayerInventory>();
+        //PlayerInventory inventory = other.GetComponent<PlayerInventory>();
+
+        //if (inventory != null)
+        //{
+        //    inventory.AddItem(item, amount);
+        //    if (notify.text.Length == 0)
+        //    {
+        //        notify.text = notify.text.Concat(new[] { new DialogOnTrigger.Text() }).ToArray();
+        //        // got to add "character name" and picture to Player class to we can auto fill all fields for specific character who picked the item
+        //    }
+        //    notify.text[0].text = "I found a " + item.itemName;
+        //    DialogOnTrigger.SpeakerInfo[] d = new DialogOnTrigger.SpeakerInfo[1] { notify };
+
+        //    DialogOnTrigger.OnTriggerDialog?.Invoke(d, true);
+        //    Destroy(gameObject);
+        //}
+    }
+
+    public void Interact(PlayerController2D player)
+    {
+        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
 
         if (inventory != null)
         {
@@ -21,7 +41,7 @@ public class PickupItem : MonoBehaviour
                 notify.text = notify.text.Concat(new[] { new DialogOnTrigger.Text() }).ToArray();
                 // got to add "character name" and picture to Player class to we can auto fill all fields for specific character who picked the item
             }
-            notify.text[0].text = "I found a " + item.name;
+            notify.text[0].text = "I found a " + item.itemName;
             DialogOnTrigger.SpeakerInfo[] d = new DialogOnTrigger.SpeakerInfo[1] { notify };
 
             DialogOnTrigger.OnTriggerDialog?.Invoke(d, true);

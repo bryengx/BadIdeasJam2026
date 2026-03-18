@@ -37,5 +37,6 @@ public class OnEnterDayStart : MonoBehaviour
         yield return new WaitForSeconds(waitTime / 2);
         player.canMove = true;
         yield return null;
+        Destroy(gameObject);
     }
 }
