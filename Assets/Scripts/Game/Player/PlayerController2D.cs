@@ -28,7 +28,7 @@ public class PlayerController2D : MonoBehaviour
     public float coyoteTime = 0.1f;
     public float jumpBufferTime = 0.1f;
 
-    public float jumpCutMultiplier = 0.4f;   // 0.3–0.6 is typical
+    public float jumpCutMultiplier = 0.4f;   // 0.3ï¿½0.6 is typical
     public float fallGravityMultiplier = 1.5f; // optional, improves feel
 
     [Header("Dash")]
@@ -58,7 +58,7 @@ public class PlayerController2D : MonoBehaviour
     Rigidbody2D rb;
     PlayerInputHandler input;
 
-    bool isGrounded;
+    public bool isGrounded;
     bool isDashing;
     bool isWallSticking; 
     int gravityDirection = -1;
