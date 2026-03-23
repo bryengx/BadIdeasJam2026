@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1227633947}
+  targetPortal: {fileID: 1227633947}
 --- !u!61 &43424859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 2010949783}
+  targetPortal: {fileID: 2010949783}
 --- !u!61 &159239956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 2074565556}
+  targetPortal: {fileID: 0}
 --- !u!61 &194280090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1712782079}
+  targetPortal: {fileID: 0}
 --- !u!61 &329170556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1084480788}
+  targetPortal: {fileID: 0}
 --- !u!61 &758476226
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73251,7 +73251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 758476225}
+  targetPortal: {fileID: 0}
 --- !u!61 &1084480789
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73646,7 +73646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1267067445}
+  targetPortal: {fileID: 0}
 --- !u!61 &1177377535
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74011,7 +74011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 43424858}
+  targetPortal: {fileID: 0}
 --- !u!61 &1227633948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74194,7 +74194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1177377534}
+  targetPortal: {fileID: 1177377534}
 --- !u!61 &1267067446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75291,7 +75291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1769876362}
+  targetPortal: {fileID: 1769876362}
 --- !u!61 &1464311790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76061,7 +76061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1632804258}
+  targetPortal: {fileID: 1632804258}
 --- !u!61 &1543737951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76244,7 +76244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1543737950}
+  targetPortal: {fileID: 1543737950}
 --- !u!61 &1632804259
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76797,7 +76797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1177377534}
+  targetPortal: {fileID: 0}
 --- !u!61 &1712782080
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77270,7 +77270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 1464311789}
+  targetPortal: {fileID: 1464311789}
 --- !u!61 &1769876363
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136059,7 +136059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 159239955}
+  targetPortal: {fileID: 159239955}
 --- !u!61 &2010949784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136243,7 +136243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0f84183b0f34f9ce27ce9970d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  tartgetPortal: {fileID: 194280089}
+  targetPortal: {fileID: 0}
 --- !u!61 &2074565557
 BoxCollider2D:
   m_ObjectHideFlags: 0
