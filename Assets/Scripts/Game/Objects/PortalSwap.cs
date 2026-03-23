@@ -15,7 +15,7 @@ public class PortalSwap : MonoBehaviour, IInteractable
     {
         idx = 0;
         PortalPair pair = portals[idx];
-        pair.source.tartgetPortal = pair.destination;
+        pair.source.targetPortal = pair.destination;
     }
     public void Interact(PlayerController2D player)
     {
@@ -23,6 +23,6 @@ public class PortalSwap : MonoBehaviour, IInteractable
         idx %= portals.Count;
 
         PortalPair pair = portals[idx];
-        pair.source.tartgetPortal = pair.destination;
+        pair.source.targetPortal = pair.destination;
     }
 }

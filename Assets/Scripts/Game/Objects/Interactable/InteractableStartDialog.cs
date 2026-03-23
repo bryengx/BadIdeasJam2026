@@ -3,6 +3,7 @@ using UnityEngine;
 public class InteractableStartDialog : MonoBehaviour, IInteractable
 {
     public Dialog dialog;
+    public DialogOnTrigger.SpeakerInfo[] message;
 
     public void Interact(PlayerController2D player)
     {
@@ -11,7 +12,7 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable
 
     void Start()
     {
-        dialog.StartDialog(null, false);
+        dialog.StartDialog(message, false);
     }
 
     // Update is called once per frame
