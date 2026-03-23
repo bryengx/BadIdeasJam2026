@@ -3,10 +3,21 @@ using UnityEngine;
 public class PlayerAudio : MonoBehaviour
 {
     public AudioSource audioSource;
+    private PlayerController2D playerController;
+    private bool wasGrounded;
+    private float lastVelocityY;
 
     [Header("Footstep Clips")]
-    public AudioClip[] woodClips;
-    public AudioClip[] dirtClips;
+    public AudioClip[] woodWalk;
+    public AudioClip[] dirtWalk;
+
+    [Header("Jump Clips")]
+    public AudioClip[] woodJump;
+    public AudioClip[] dirtJump;
+
+    [Header("Land Clips")]
+    public AudioClip[] woodLand;
+    public AudioClip[] dirtLand;
 
     [Header("Randomization Settings")]
     [Range(0f, 1f)] public float baseVolume = 0.8f; 
@@ -15,34 +26,52 @@ public class PlayerAudio : MonoBehaviour
     [Range(0.8f, 1.5f)] public float maxPitch = 1.15f;
 
     private string currentRoomTag = "Wood"; 
-    private PlayerController2D playerController;
 
     void Awake()
     {
         playerController = GetComponent<PlayerController2D>();
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        wasGrounded = true;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    void Update()
     {
-        if (collision.CompareTag("Wood") || collision.CompareTag("Dirt"))
+        if (playerController == null) return;
+        float currentVelocityY = GetComponent<Rigidbody2D>().linearVelocity.y;
+
+        // Land
+        if (!wasGrounded && playerController.isGrounded)
         {
-            currentRoomTag = collision.tag;
+            if (currentRoomTag == "Wood") PlayRandom(woodLand);
+            else if (currentRoomTag == "Dirt") PlayRandom(dirtLand);
         }
+
+        // Ground jump
+        bool groundJump = wasGrounded && !playerController.isGrounded && currentVelocityY > 0.1f;
+        // Wall jump
+        bool wallJump = !playerController.isGrounded && lastVelocityY <= 0.5f && currentVelocityY > 0.8f;
+        
+        if (groundJump || wallJump)
+        {
+            if (currentRoomTag == "Wood") PlayRandom(woodJump);
+            else if (currentRoomTag == "Dirt") PlayRandom(dirtJump);
+        }
+
+        wasGrounded = playerController.isGrounded;
+        lastVelocityY = currentVelocityY;
     }
 
     public void PlayFootstep()
     {
-        if (playerController != null && !playerController.isGrounded)
-        {
-            return; 
-        }
+        if (playerController != null && !playerController.isGrounded) return; 
+        
         if (currentRoomTag == "Wood")
         {
-            PlayRandom(woodClips);
+            PlayRandom(woodWalk);
         }
         else if (currentRoomTag == "Dirt")
         {
-            PlayRandom(dirtClips);
+            PlayRandom(dirtWalk);
         }
     }
 
@@ -61,6 +90,14 @@ public class PlayerAudio : MonoBehaviour
             finalVolume = Mathf.Max(0.1f, finalVolume);
 
             audioSource.PlayOneShot(clip, finalVolume);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Wood") || collision.CompareTag("Dirt"))
+        {
+            currentRoomTag = collision.tag;
         }
     }
 }
