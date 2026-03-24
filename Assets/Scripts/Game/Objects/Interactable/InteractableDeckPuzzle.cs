@@ -31,7 +31,10 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
     }
     void TriggerDialog(DialogOnTrigger.SpeakerInfo[] info)
     {
-        FindFirstObjectByType<Dialog>().StartDialog(info, false);
+        ///Use event instead of searcing for an object type since its more perfomanca
+        
+        //FindFirstObjectByType<Dialog>().StartDialog(null,info, false);
+        DialogOnTrigger.OnTriggerDialog?.Invoke(null, info, false);
     }
     void SwapPictures(PlayerController2D player)
     {

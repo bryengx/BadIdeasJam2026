@@ -8,19 +8,26 @@ using static DialogOnTrigger;
 
 public class Dialog : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private CanvasGroup canvGroup;
+    [SerializeField] private bool onTriggerEnterDialog = true;
     [SerializeField] private Image charImag;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float msgDuration = 3f;
 
-    private Queue<SpeakerInfo[]> dialogsQueued = new Queue<SpeakerInfo[]>();
+    public struct QueuedDialog
+    {
+        public DialogOnTrigger dialogTrigger;
+        public SpeakerInfo[] speakerInfo;
+    }
+    private Queue<QueuedDialog> dialogsQueued = new Queue<QueuedDialog>();
     private bool showingText = false;
 
     private void Awake()
     {
-        canvas.SetActive(false);
-        
+        canvGroup.alpha = 0;
+
+
     }
     private void OnEnable()
     {
@@ -31,7 +38,7 @@ public class Dialog : MonoBehaviour
         OnTriggerDialog -= StartDialog;
     }
 
-    public void StartDialog(SpeakerInfo[] dialInfo, bool highPriority)
+    public void StartDialog(DialogOnTrigger sender, SpeakerInfo[] dialInfo, bool highPriority)
     {
         if (dialInfo.Length == 0)
         {
@@ -43,23 +50,31 @@ public class Dialog : MonoBehaviour
             if (highPriority)
             {
                 StopAllCoroutines();
-                dialogsQueued = new Queue<SpeakerInfo[]>();
+                foreach(QueuedDialog dialog in dialogsQueued)
+                {
+                    dialog.dialogTrigger?.OnDialogEnd(false);
+                }
+                dialogsQueued = new Queue<QueuedDialog>();
                 Debug.Log("Clearing queue!");
             }
             else
             {
                 Debug.Log("Queueng..");
-                dialogsQueued.Enqueue(dialInfo);
+                QueuedDialog que = new QueuedDialog();
+                que.dialogTrigger = sender;
+                que.speakerInfo = dialInfo;
+
+                dialogsQueued.Enqueue(que);
                 return;
             }
         }
         
         showingText = true;
-        canvas.SetActive(true);
-        StartCoroutine(ShowDialog(dialInfo));
+        canvGroup.alpha = 1f;
+        StartCoroutine(ShowDialog(sender, dialInfo));
     }
 
-    private IEnumerator ShowDialog(SpeakerInfo[] dialogs)
+    private IEnumerator ShowDialog(DialogOnTrigger sender, SpeakerInfo[] dialogs)
     {
         //InventoryUI.instance.Hide();
         if (dialogs.Length == 0)
@@ -96,16 +111,18 @@ public class Dialog : MonoBehaviour
                 yield return null;
             }
         }
+        sender?.OnDialogEnd(true);
 
         showingText = false;
         if ( dialogsQueued.Count > 0 )
         {
             Debug.Log("Dequeueing!");
-            StartDialog(dialogsQueued.Dequeue(), false);
+            QueuedDialog que = dialogsQueued.Dequeue();
+            StartDialog(que.dialogTrigger, que.speakerInfo, false);
         }
         else
         {
-            canvas.SetActive(false);
+            canvGroup.alpha = 0f;
         }
         
     }

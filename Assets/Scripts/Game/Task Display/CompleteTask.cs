@@ -24,7 +24,8 @@ public class CompleteTask : MonoBehaviour
 
         sqrDistanc = triggerDistance * triggerDistance;
 
-        StartCoroutine(CheckDistance());
+        if(onEnterTaskComplete)
+            StartCoroutine(CheckDistance());
     }
     private IEnumerator CheckDistance()
     {

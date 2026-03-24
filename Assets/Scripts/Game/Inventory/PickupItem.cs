@@ -44,7 +44,7 @@ public class PickupItem : MonoBehaviour, IInteractable
             notify.text[0].text = "I found a " + item.itemName;
             DialogOnTrigger.SpeakerInfo[] d = new DialogOnTrigger.SpeakerInfo[1] { notify };
 
-            DialogOnTrigger.OnTriggerDialog?.Invoke(d, true);
+            DialogOnTrigger.OnTriggerDialog?.Invoke(null,d, true);
             Destroy(gameObject);
         }
     }

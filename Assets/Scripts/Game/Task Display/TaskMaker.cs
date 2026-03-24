@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class TaskMaker : MonoBehaviour
@@ -12,6 +13,7 @@ public class TaskMaker : MonoBehaviour
 
         public string taskDiscription;
         public bool completed;
+        public UnityEvent OnTaskComplete;
     }
 
     public static event Action<Task[]> ShowTask;
@@ -19,11 +21,15 @@ public class TaskMaker : MonoBehaviour
     public Func<string,bool> OnCompleteTask;
 
     [SerializeField] private Task[] Tasks;
+    [SerializeField] private bool onCollisionTrigger = true;
 
     [Tooltip("Must the tasks be completed in order?")]
     [SerializeField] private bool taskOrder = true;
 
+    [SerializeField] private UnityEvent OnTasksComplete;
+
     private bool tasksCreated = false;
+    private bool tasksCompleted = false;
 
     private void OnEnable()
     {
@@ -35,19 +41,23 @@ public class TaskMaker : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (tasksCreated) return;
+        if (tasksCreated || onCollisionTrigger == false) return;
 
         bool player = collision.gameObject.CompareTag("Player");
         if (player)
         {
-            if(Tasks.Length == 0)
-            {
-                Debug.LogError("No tasks found!");
-                return;
-            }
-            tasksCreated = true;
-            ShowTask?.Invoke(Tasks);
+            ShowTasks();
         }
+    }
+    public void ShowTasks()
+    {
+        if (Tasks.Length == 0)
+        {
+            Debug.LogError("No tasks found!");
+            return;
+        }
+        tasksCreated = true;
+        ShowTask?.Invoke(Tasks);
     }
     private bool TaskCompleted(string taskName)
     {
@@ -73,8 +83,12 @@ public class TaskMaker : MonoBehaviour
                 if (task.name == taskName)
                 {
                     task.completed = true;
+                    task.OnTaskComplete?.Invoke();
+
                     OnTaskComplete?.Invoke(taskName);
                     found = true;
+
+                    CheckTasks();
                     break;
                 }
             }
@@ -88,5 +102,19 @@ public class TaskMaker : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void CheckTasks()
+    {
+        int i = 0;
+        foreach (var task in Tasks)
+        {
+            if (task.completed) i++;
+        }
+        if(i == Tasks.Length && tasksCompleted == false)
+        {
+            tasksCompleted = true;
+            OnTasksComplete?.Invoke();
+        }
     }
 }

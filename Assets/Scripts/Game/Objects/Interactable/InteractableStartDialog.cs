@@ -11,7 +11,7 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable
 
     void Start()
     {
-        dialog.StartDialog(null, false);
+        //dialog.StartDialog(null, false);
     }
 
     // Update is called once per frame

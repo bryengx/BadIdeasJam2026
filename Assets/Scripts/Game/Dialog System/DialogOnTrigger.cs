@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-[RequireComponent(typeof(Collider2D))]
+using UnityEngine.Events;
 public class DialogOnTrigger : MonoBehaviour
 {
     [Serializable]
@@ -18,9 +18,17 @@ public class DialogOnTrigger : MonoBehaviour
         public Text[] text;
     }
 
-    public static Action<SpeakerInfo[], bool> OnTriggerDialog;
+    [Tooltip("Must dialog be triggered by on collide?")]
+    [SerializeField] private bool ontriggerEnterDialog = true;
+
+    //Call this anywhere if you want to make a dialog. Dont search for the dialog class with find object by type
+    public static Action<DialogOnTrigger, SpeakerInfo[], bool> OnTriggerDialog;
+
     [SerializeField] SpeakerInfo[] dialogs;
     [SerializeField] bool isHighPriority = false;
+
+    [SerializeField] private UnityEvent OnDialogBegin;
+    [SerializeField] private UnityEvent OnDialogFinish;
 
     private bool debounce = false;
     private void OnValidate()
@@ -34,11 +42,22 @@ public class DialogOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (ontriggerEnterDialog == false) return;
         bool player = collision.gameObject.CompareTag("Player");
         if (player && debounce == false)
         {
             debounce = true;
-            OnTriggerDialog?.Invoke(dialogs, isHighPriority);
+            TriggerDialog();
         }
+    }
+
+    public void TriggerDialog()
+    {
+        OnDialogBegin?.Invoke();
+        OnTriggerDialog?.Invoke(this, dialogs, isHighPriority);
+    }
+    public void OnDialogEnd(bool succ)
+    {
+        OnDialogFinish?.Invoke();
     }
 }
