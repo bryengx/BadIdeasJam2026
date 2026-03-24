@@ -859,7 +859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
   audioSource: {fileID: 8260009512243950366}
-  soundCooldown: 0.15
   woodWalk:
   - {fileID: 8300000, guid: a9ef35cda5ac24560b7b522001f52440, type: 3}
   - {fileID: 8300000, guid: a7e9d5ca59b5645fabd38f355355406a, type: 3}
@@ -906,7 +905,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c79bcc073ade2488e87f07703a0a0f91, type: 3}
   - {fileID: 8300000, guid: 4c9cfe79c24c24fe0ac873c9d4e36f2c, type: 3}
   - {fileID: 8300000, guid: e2ae13fa573be4ec1b0a0f7458634acf, type: 3}
-  baseVolume: 0.35
+  baseVolume: 0.6
   volumeVariation: 0.15
   minPitch: 1
   maxPitch: 1.3
