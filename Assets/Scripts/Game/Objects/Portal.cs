@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public Portal targetPortal;
+    public Portal tartgetPortal;
     bool ignoreEntry = false;
     void Start()
     {
@@ -20,18 +20,11 @@ public class Portal : MonoBehaviour
 
             PlayerController2D player = other.GetComponent<PlayerController2D>();
 
-            if (targetPortal != null && player != null)
+            if (tartgetPortal != null && player != null)
             {
-                targetPortal.ignoreEntry = true;
-                player.transform.position = targetPortal.transform.position;
+                tartgetPortal.ignoreEntry = true;
+                player.transform.position = tartgetPortal.transform.position;
             }
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 0.25f);
-        if (targetPortal != null)
-            Gizmos.DrawLine(transform.position, targetPortal.transform.position);
     }
 }
