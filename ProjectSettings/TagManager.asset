@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Interactable
-  - Wood
-  - Dirt
   - Platform
+  - Room
+  - Cave
   layers:
   - Default
   - TransparentFX
