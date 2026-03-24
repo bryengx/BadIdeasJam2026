@@ -6,6 +6,8 @@ public class PlayerAudio : MonoBehaviour
     private PlayerController2D playerController;
     private bool wasGrounded;
     private float lastVelocityY;
+    private float lastPlayTime;
+    public float soundCooldown = 0.15f;
 
     [Header("Footstep Clips")]
     public AudioClip[] woodWalk;
@@ -25,7 +27,7 @@ public class PlayerAudio : MonoBehaviour
     [Range(0.8f, 1.5f)] public float minPitch = 0.95f;       
     [Range(0.8f, 1.5f)] public float maxPitch = 1.15f;
 
-    private string currentRoomTag = "Wood"; 
+    public string currentRoomTag = "Room"; 
 
     void Awake()
     {
@@ -42,8 +44,8 @@ public class PlayerAudio : MonoBehaviour
         // Land
         if (!wasGrounded && playerController.isGrounded)
         {
-            if (currentRoomTag == "Wood") PlayRandom(woodLand);
-            else if (currentRoomTag == "Dirt") PlayRandom(dirtLand);
+            if (currentRoomTag == "Room") PlayRandom(woodLand, true);
+            else if (currentRoomTag == "Cave") PlayRandom(dirtLand, true);
         }
 
         // Ground jump
@@ -53,8 +55,8 @@ public class PlayerAudio : MonoBehaviour
         
         if (groundJump || wallJump)
         {
-            if (currentRoomTag == "Wood") PlayRandom(woodJump);
-            else if (currentRoomTag == "Dirt") PlayRandom(dirtJump);
+            if (currentRoomTag == "Room") PlayRandom(woodJump);
+            else if (currentRoomTag == "Cave") PlayRandom(dirtJump);
         }
 
         wasGrounded = playerController.isGrounded;
@@ -65,18 +67,20 @@ public class PlayerAudio : MonoBehaviour
     {
         if (playerController != null && !playerController.isGrounded) return; 
         
-        if (currentRoomTag == "Wood")
+        if (currentRoomTag == "Room")
         {
             PlayRandom(woodWalk);
         }
-        else if (currentRoomTag == "Dirt")
+        else if (currentRoomTag == "Cave")
         {
             PlayRandom(dirtWalk);
         }
     }
 
-    private void PlayRandom(AudioClip[] clips)
+    private void PlayRandom(AudioClip[] clips, bool ignoreCooldown = false)
     {
+        if (!ignoreCooldown && Time.time - lastPlayTime < soundCooldown) return;
+
         if (clips != null && clips.Length > 0)
         {
             // Random clips
@@ -90,14 +94,26 @@ public class PlayerAudio : MonoBehaviour
             finalVolume = Mathf.Max(0.1f, finalVolume);
 
             audioSource.PlayOneShot(clip, finalVolume);
+
+            lastPlayTime = Time.time;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void PlayRandomWithPriority(AudioClip[] clips)
     {
-        if (collision.CompareTag("Wood") || collision.CompareTag("Dirt"))
+        PlayRandom(clips, true); 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Room") || collision.CompareTag("Cave"))
         {
             currentRoomTag = collision.tag;
+        }
+        
+        if (AmbienceAudioManager.Instance != null)
+        {
+            AmbienceAudioManager.Instance.ChangeAmbience(collision.tag);
         }
     }
 }

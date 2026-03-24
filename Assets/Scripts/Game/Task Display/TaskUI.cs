@@ -13,6 +13,8 @@ public class TaskUI : MonoBehaviour
     private List<GameObject> unCompletedTasks =  new List<GameObject>();
     private List<GameObject> completedTasks = new List<GameObject>();
 
+    public static System.Action OnAllTasksFinished;
+
     private void OnEnable()
     {
         TaskMaker.ShowTask += ShowTasks;
@@ -62,7 +64,7 @@ public class TaskUI : MonoBehaviour
             StartCoroutine(HideTask());
         }
     }
-    private IEnumerator HideTask()
+    public IEnumerator HideTask()
     {
         Debug.Log("<color=green>Tasks completed!</color>");
 
@@ -74,7 +76,7 @@ public class TaskUI : MonoBehaviour
         }
         unCompletedTasks = new List<GameObject>();
         tasksCompletedText.SetActive(true);
-
+        OnAllTasksFinished?.Invoke();
         yield return new WaitForSeconds(3f);
 
         canvGroup.alpha = 0;
