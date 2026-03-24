@@ -43,6 +43,6 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
         newRoomObj.SetActive(true);
 
         // redirect room door
-        sourcePortal.tartgetPortal = destinationPortal;
+        sourcePortal.targetPortal = destinationPortal;
     }
 }
