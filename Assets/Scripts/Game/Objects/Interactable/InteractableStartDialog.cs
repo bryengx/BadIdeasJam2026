@@ -3,15 +3,15 @@ using UnityEngine;
 public class InteractableStartDialog : MonoBehaviour, IInteractable
 {
     public Dialog dialog;
+    public DialogOnTrigger.SpeakerInfo[] speakerInfo;
 
     public void Interact(PlayerController2D player)
     {
-        throw new System.NotImplementedException();
+        DialogOnTrigger.OnTriggerDialog(null, speakerInfo, false);
     }
 
     void Start()
     {
-        //dialog.StartDialog(null, false);
     }
 
     // Update is called once per frame
