@@ -6,6 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using static DialogOnTrigger;
 
+public interface IDialogAdditionalActions
+{
+    void BeforeDialog();
+    void AfterDialog();
+}
+
 public class Dialog : MonoBehaviour
 {
     [SerializeField] private CanvasGroup canvGroup;
@@ -14,6 +20,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float msgDuration = 3f;
+    private IDialogAdditionalActions additionalActions;
 
     public struct QueuedDialog
     {
@@ -37,7 +44,11 @@ public class Dialog : MonoBehaviour
     {
         OnTriggerDialog -= StartDialog;
     }
-
+    public void StartDialog(IDialogAdditionalActions actions, SpeakerInfo[] dialInfo, bool highPriority)
+    {
+        additionalActions = actions;
+        DialogOnTrigger.OnTriggerDialog(null, dialInfo, highPriority);
+    }
     public void StartDialog(DialogOnTrigger sender, SpeakerInfo[] dialInfo, bool highPriority)
     {
         if (dialInfo.Length == 0)
@@ -76,6 +87,7 @@ public class Dialog : MonoBehaviour
 
     private IEnumerator ShowDialog(DialogOnTrigger sender, SpeakerInfo[] dialogs)
     {
+        additionalActions?.BeforeDialog();
         //InventoryUI.instance.Hide();
         if (dialogs.Length == 0)
         {
@@ -112,6 +124,7 @@ public class Dialog : MonoBehaviour
             }
         }
         sender?.OnDialogEnd(true);
+        additionalActions?.AfterDialog();
 
         showingText = false;
         if ( dialogsQueued.Count > 0 )
@@ -124,7 +137,7 @@ public class Dialog : MonoBehaviour
         {
             canvGroup.alpha = 0f;
         }
-        
+        additionalActions = null;
     }
     private bool DialogFinished(SpeakerInfo[] dialogs)
     {
