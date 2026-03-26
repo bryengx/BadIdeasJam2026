@@ -11,6 +11,10 @@ public class EggBrake : MonoBehaviour
 
     [SerializeField] private DialogOnTrigger.SpeakerInfo failToBrakeText;
 
+    [SerializeField] private AudioClip[] eggNotBrokenClips;
+    [SerializeField] private AudioClip eggBrokenClip;
+    private int lastClipIndex = -1;
+
     private TargetJoint2D joint;
     private Camera mainCam;
 
@@ -65,10 +69,15 @@ public class EggBrake : MonoBehaviour
 
         if (impactSpeed >= breakSPeed)
         {
+            if (eggBrokenClip != null)
+            {
+                AudioSource.PlayClipAtPoint(eggBrokenClip, transform.position);
+            }
             BreakEgg();
         }
         else
         {
+            PlayRandomSFX();
             DialogOnTrigger.SpeakerInfo[] info = new DialogOnTrigger.SpeakerInfo[] { failToBrakeText };
             DialogOnTrigger.OnTriggerDialog?.Invoke(null, info, true);
         }
@@ -81,5 +90,21 @@ public class EggBrake : MonoBehaviour
         GetComponent<CompleteTask>()?.TaskComplete();
 
         Destroy(gameObject);
+    }
+    private void PlayRandomSFX()
+    {
+        if (eggNotBrokenClips == null || eggNotBrokenClips.Length == 0) return;
+
+        int randomIndex = 0;
+        if (eggNotBrokenClips.Length > 1)
+        {
+            do
+            {
+                randomIndex = Random.Range(0, eggNotBrokenClips.Length);
+            } while (randomIndex == lastClipIndex);
+        }
+
+        lastClipIndex = randomIndex;
+        AudioSource.PlayClipAtPoint(eggNotBrokenClips[randomIndex], transform.position);
     }
 }
