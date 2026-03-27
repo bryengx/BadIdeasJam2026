@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAdditionalActions
 {
-    public Dialog dialog;
-    public DialogOnTrigger.SpeakerInfo[] speakerInfo;
+    public Dialog.DialogInfo[] speakerInfo;
     private PlayerController2D playerObj;
 
     public void AfterDialog()
@@ -22,7 +21,10 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAddi
     public void Interact(PlayerController2D player)
     {
         playerObj = player;
-        dialog.StartDialog(this, speakerInfo, false);
+
+        Dialog.CallDialog(speakerInfo, false, BeforeDialog, AfterDialog,true);
+
+        //dialog.StartDialog(this, speakerInfo, false);
         //DialogOnTrigger.OnTriggerDialog(null, speakerInfo, false);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PickupItem : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DialogOnTrigger.SpeakerInfo notify;
+    [SerializeField] private Dialog.DialogInfo notify;
     public InventoryItem item;
     public int amount = 1;
 
@@ -36,15 +36,15 @@ public class PickupItem : MonoBehaviour, IInteractable
         if (inventory != null)
         {
             inventory.AddItem(item, amount);
-            if (notify.text.Length == 0)
+            if (notify.text.Count == 0)
             {
-                notify.text = notify.text.Concat(new[] { new DialogOnTrigger.Text() }).ToArray();
+                notify.text = notify.text.Concat(new[] { new Dialog.DialogText() }).ToList();
                 // got to add "character name" and picture to Player class to we can auto fill all fields for specific character who picked the item
             }
             notify.text[0].text = "I found a " + item.itemName;
-            DialogOnTrigger.SpeakerInfo[] d = new DialogOnTrigger.SpeakerInfo[1] { notify };
+            Dialog.DialogInfo[] d = new Dialog.DialogInfo[1] { notify };
 
-            DialogOnTrigger.OnTriggerDialog?.Invoke(null,d, true);
+            Dialog.CallDialog?.Invoke(d, true);
             Destroy(gameObject);
         }
     }

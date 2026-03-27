@@ -5,10 +5,9 @@ public class MakeEggs : MonoBehaviour,IInteractable
     [SerializeField] private GameObject stoveUI;
     [SerializeField] private CompleteTask completeTask;
 
-
     [SerializeField] private Transform placePan;
 
-    [SerializeField] private DialogOnTrigger.SpeakerInfo speaker;
+    [SerializeField] private Dialog.DialogInfo speaker;
    [HideInInspector] public GameObject eggs;
    [HideInInspector] public GameObject pan;
     private bool placedPan;
@@ -46,7 +45,7 @@ public class MakeEggs : MonoBehaviour,IInteractable
     }
     private void SayMissingStuff()
     {
-        DialogOnTrigger.SpeakerInfo[] info = new DialogOnTrigger.SpeakerInfo[] { speaker };
-        DialogOnTrigger.OnTriggerDialog(null, info, false);
+        Dialog.DialogInfo[] info = new Dialog.DialogInfo[] { speaker };
+        Dialog.CallDialog(info, true);
     }
 }

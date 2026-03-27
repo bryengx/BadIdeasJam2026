@@ -3,7 +3,7 @@ using static DialogOnTrigger;
 [RequireComponent(typeof(Collider2D))]
 public class LoopingCorridors : MonoBehaviour
 {
-    [SerializeField] SpeakerInfo[] dialogs;
+    [SerializeField] Dialog.DialogInfo[] dialogs;
     [SerializeField] private int maxCount = 5;
     [SerializeField] bool isHighPriority = false;
 
@@ -17,7 +17,7 @@ public class LoopingCorridors : MonoBehaviour
             if (maxCount == 0)
             {
                 debounce = true;
-                OnTriggerDialog?.Invoke(null, dialogs, isHighPriority);
+                Dialog.CallDialog?.Invoke(dialogs, isHighPriority);
             }
         }
     }

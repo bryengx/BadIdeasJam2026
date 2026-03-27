@@ -12,7 +12,7 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
     public Portal sourcePortal;
     public Portal destinationPortal;
 
-    public DialogOnTrigger.SpeakerInfo[] lookAtPicturesDialog;
+    public Dialog.DialogInfo[] lookAtPicturesDialog;
     void Start()
     {
         oldRoomObj.SetActive(true);
@@ -29,12 +29,12 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
 
         ChoiceWindowUI.instance.Open(statement, choices.ToArray());
     }
-    void TriggerDialog(DialogOnTrigger.SpeakerInfo[] info)
+    void TriggerDialog(Dialog.DialogInfo[] info)
     {
         ///Use event instead of searcing for an object type since its more perfomanca
-        
+
         //FindFirstObjectByType<Dialog>().StartDialog(null,info, false);
-        DialogOnTrigger.OnTriggerDialog?.Invoke(null, info, false);
+        Dialog.CallDialog?.Invoke( info, false);
     }
     void SwapPictures(PlayerController2D player)
     {

@@ -624,7 +624,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 77851216}
+  - component: {fileID: 82389531}
   - component: {fileID: 77851217}
   - component: {fileID: 77851218}
   - component: {fileID: 77851219}
@@ -635,120 +635,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &82389530
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82389529}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &82389531
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77851215}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.2, y: 18.31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2076325577}
-  - {fileID: 527043662}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &77851217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,6 +713,23 @@ MonoBehaviour:
   taskName: Clean floor
   onEnterTaskComplete: 0
   triggerDistance: 5
+--- !u!4 &82389531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77851215}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 61.2, y: 18.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2076325577}
+  - {fileID: 527043662}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83146476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,7 +2676,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 402485636}
+  - component: {fileID: 463034881}
   - component: {fileID: 402485637}
   - component: {fileID: 402485638}
   m_Layer: 0
@@ -2783,118 +2686,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &463034880
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463034879}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &463034881
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402485635}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.03, y: -1.31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1591890949}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &402485637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,20 +2701,25 @@ MonoBehaviour:
   ontriggerEnterDialog: 1
   dialogs:
   - name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: I'm so tired...
+    - duration: 3
+      text: I'm so tired...
       read: 0
   - name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: Let me go check what i can do in the kitchen.
+    - duration: 3
+      text: Let me go check what i can do in the kitchen.
       read: 0
   isHighPriority: 0
-  OnDialogBegin:
+  alwaysCallOnEndFunction: 1
+  onDialogBegin:
     m_PersistentCalls:
       m_Calls: []
-  OnDialogFinish:
+  onDialogFinish:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1375807325}
@@ -2984,6 +2780,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.4547205, y: 5.972952}
   m_EdgeRadius: 0
+--- !u!4 &463034881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402485635}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.03, y: -1.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1591890949}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474025293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,7 +3350,7 @@ Transform:
   m_LocalScale: {x: 0.18480001, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 77851216}
+  m_Father: {fileID: 82389531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &527043663
 SpriteRenderer:
@@ -75791,15 +75602,18 @@ MonoBehaviour:
   ontriggerEnterDialog: 0
   dialogs:
   - name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: Let go make a call
+    - duration: 3
+      text: Let go make a call
       read: 0
   isHighPriority: 1
-  OnDialogBegin:
+  alwaysCallOnEndFunction: 1
+  onDialogBegin:
     m_PersistentCalls:
       m_Calls: []
-  OnDialogFinish:
+  onDialogFinish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1043175609
@@ -79281,9 +79095,11 @@ MonoBehaviour:
   placePan: {fileID: 1069044670}
   speaker:
     name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: 
+    - duration: 3
+      text: 
       read: 0
   eggs: {fileID: 0}
   pan: {fileID: 0}
@@ -79414,9 +79230,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 402485636}
   - {fileID: 2104029461}
   - {fileID: 1043175609}
+  - {fileID: 463034881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605020437
@@ -81434,19 +81250,24 @@ MonoBehaviour:
   ontriggerEnterDialog: 0
   dialogs:
   - name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: I can't have that! Nope!
+    - duration: 3
+      text: I can't have that! Nope!
       read: 0
-    - text: Though i could give my immune system a little excersise..
+    - duration: 3
+      text: Though i could give my immune system a little excersise..
       read: 0
-    - text: Nah.
+    - duration: 3
+      text: Nah.
       read: 0
   isHighPriority: 0
-  OnDialogBegin:
+  alwaysCallOnEndFunction: 1
+  onDialogBegin:
     m_PersistentCalls:
       m_Calls: []
-  OnDialogFinish:
+  onDialogFinish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1839496175
@@ -140121,7 +139942,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.16, y: 1.64, z: 0}
-  m_LocalScale: {x: 11.884943, y: 11.884943, z: 11.884943}
+  m_LocalScale: {x: 1.2979957, y: 1.2979957, z: 1.2979957}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828361668}
@@ -140175,7 +139996,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 28
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1966564465, guid: 242ac89cf56b7a14988120e220929a4b, type: 3}
+  m_Sprite: {fileID: 226359060179558388, guid: b05ba8806fc616f41903bcabe94ccc0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140233,9 +140054,11 @@ MonoBehaviour:
   eggCollide: {fileID: 1864735166}
   failToBrakeText:
     name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: I can hit harder than that
+    - duration: 3
+      text: I can hit harder than that
       read: 0
 --- !u!58 &1966775514
 CircleCollider2D:
@@ -140272,7 +140095,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.00000047683716, y: 0}
-  m_Radius: 0.06499999
+  m_Radius: 0.43
 --- !u!114 &1966775515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140756,7 +140579,7 @@ Transform:
   m_LocalScale: {x: 0.83029, y: 0.83029, z: 0.83029}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 77851216}
+  m_Father: {fileID: 82389531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2076325578
 SpriteRenderer:
@@ -141123,34 +140946,29 @@ MonoBehaviour:
   ontriggerEnterDialog: 1
   dialogs:
   - name: Mira
+    isPlayer: 0
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - text: '"Hey'
+    - duration: 3
+      text: '"Hey'
       read: 0
-    - text: "\"I don\u2019t know if you still wanna hear from me.\""
+    - duration: 3
+      text: "\"I don\u2019t know if you still wanna hear from me.\""
       read: 0
-    - text: '"sorry for bothering, but if you still do, lemme know."'
+    - duration: 3
+      text: '"sorry for bothering, but if you still do, lemme know."'
       read: 0
-    - text: Man im whoozy
+    - duration: 3
+      text: Man im whoozy
       read: 0
-    - text: Better get some sleep
+    - duration: 3
+      text: Better get some sleep
       read: 0
   isHighPriority: 1
-  OnDialogBegin:
+  alwaysCallOnEndFunction: 1
+  onDialogBegin:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 149064764}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1611178689}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -141163,7 +140981,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  OnDialogFinish:
+      - m_Target: {fileID: 149064764}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onDialogFinish:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 149064764}
@@ -141782,6 +141612,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Task Displayer
       objectReference: {fileID: 0}
+    - target: {fileID: 629457707720992756, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 629457707720992756, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 629457707720992756, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 629457707720992756, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001713606341880792, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0000076293945
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001713606341880792, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000038146973
+      objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -141808,11 +141662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 228.3929
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 411.1981
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_LocalPosition.x
@@ -141844,11 +141698,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -285.80453
+      value: -325
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -27.5334
+      value: 0.00000047684
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -141860,6 +141714,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2106058323709136487, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386298711520840469, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386298711520840469, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000013225014
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795869666239979690, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_fontSize
+      value: 27.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116527736652823119, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116527736652823119, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116527736652823119, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116527736652823119, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6583042973745445203, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
@@ -141913,7 +141795,6 @@ SceneRoots:
   - {fileID: 2072619911}
   - {fileID: 1444308026}
   - {fileID: 1415488760}
-  - {fileID: 77851216}
   - {fileID: 75415708}
   - {fileID: 1591890949}
   - {fileID: 1502583167}
@@ -141921,3 +141802,4 @@ SceneRoots:
   - {fileID: 861402787}
   - {fileID: 1777412351}
   - {fileID: 1010611360}
+  - {fileID: 82389531}
