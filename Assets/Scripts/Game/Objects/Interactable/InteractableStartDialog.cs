@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAdditionalActions
 {
-    public Dialog dialog;
-    public DialogOnTrigger.SpeakerInfo[] speakerInfo;
+    public Dialog.DialogInfo[] speakerInfo;
     private PlayerController2D playerObj;
 
     public void AfterDialog()
@@ -11,6 +10,7 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAddi
         Debug.Log("AfterDialog");
         playerObj.canMove = true;
         playerObj.canAirJump = true;
+        StartFollowingPlayer();
     }
 
     public void BeforeDialog()
@@ -18,11 +18,20 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAddi
         playerObj.canMove = false;
         Debug.Log("BeforeDialog");
     }
+    void StartFollowingPlayer()
+    {
+        GetComponent<FollowPlayer>().enabled = true;
+        gameObject.tag = "Untagged";
+        Destroy(this);
+    }
 
     public void Interact(PlayerController2D player)
     {
         playerObj = player;
-        dialog.StartDialog(this, speakerInfo, false);
+
+        Dialog.CallDialog(speakerInfo, false, BeforeDialog, AfterDialog,true);
+
+        //dialog.StartDialog(this, speakerInfo, false);
         //DialogOnTrigger.OnTriggerDialog(null, speakerInfo, false);
     }
 

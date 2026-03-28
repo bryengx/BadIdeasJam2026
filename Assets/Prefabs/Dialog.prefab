@@ -484,11 +484,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DialogSystem::Dialog
   canvGroup: {fileID: 782956972045397222}
-  onTriggerEnterDialog: 1
   charImag: {fileID: 6613904278248706991}
   nameText: {fileID: 9084092624483236731}
   textMesh: {fileID: 7873392828135707207}
-  msgDuration: 3
+  typingSpeed: 0.025
+  playerImage: {fileID: 6042378114960933089, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
+  playerName: Miro
 --- !u!222 &6753606906990271198
 CanvasRenderer:
   m_ObjectHideFlags: 0

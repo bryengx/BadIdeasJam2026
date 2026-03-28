@@ -9,7 +9,7 @@ public class EggBrake : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D eggCollide;
 
-    [SerializeField] private DialogOnTrigger.SpeakerInfo failToBrakeText;
+    [SerializeField] private Dialog.DialogInfo failToBrakeText;
 
     private TargetJoint2D joint;
     private Camera mainCam;
@@ -69,8 +69,8 @@ public class EggBrake : MonoBehaviour
         }
         else
         {
-            DialogOnTrigger.SpeakerInfo[] info = new DialogOnTrigger.SpeakerInfo[] { failToBrakeText };
-            DialogOnTrigger.OnTriggerDialog?.Invoke(null, info, true);
+            Dialog.DialogInfo[] info = new Dialog.DialogInfo[] { failToBrakeText };
+            Dialog.CallDialog?.Invoke(info, true);
         }
     }
     private void BreakEgg()

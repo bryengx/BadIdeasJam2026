@@ -3,32 +3,17 @@ using UnityEngine;
 using UnityEngine.Events;
 public class DialogOnTrigger : MonoBehaviour
 {
-    [Serializable]
-    public class Text
-    {
-        [TextArea]
-        public string text;
-        [HideInInspector] public bool read;
-    }
-    [Serializable]
-    public class SpeakerInfo
-    {
-        public string name;
-        public Sprite charImage;
-        public Text[] text;
-    }
-
     [Tooltip("Must dialog be triggered by on collide?")]
     [SerializeField] private bool ontriggerEnterDialog = true;
 
-    //Call this anywhere if you want to make a dialog. Dont search for the dialog class with find object by type
-    public static Action<DialogOnTrigger, SpeakerInfo[], bool> OnTriggerDialog;
-
-    [SerializeField] SpeakerInfo[] dialogs;
+    [SerializeField] Dialog.DialogInfo[] dialogs;
     [SerializeField] bool isHighPriority = false;
 
-    [SerializeField] private UnityEvent OnDialogBegin;
-    [SerializeField] private UnityEvent OnDialogFinish;
+    [Tooltip("Should the on end dialog event fire even if the dialog unsucssful?")]
+    [SerializeField] bool alwaysCallOnEndFunction = true;
+
+    [SerializeField] private UnityEvent onDialogBegin;
+    [SerializeField] private UnityEvent onDialogFinish;
 
     private bool debounce = false;
     private void OnValidate()
@@ -53,11 +38,15 @@ public class DialogOnTrigger : MonoBehaviour
 
     public void TriggerDialog()
     {
-        OnDialogBegin?.Invoke();
-        OnTriggerDialog?.Invoke(this, dialogs, isHighPriority);
+        Dialog.CallDialog?.Invoke(dialogs, isHighPriority, OnDialogBegin, OnDialogEnd, alwaysCallOnEndFunction);
     }
-    public void OnDialogEnd(bool succ)
+
+    private void OnDialogBegin()
     {
-        OnDialogFinish?.Invoke();
+        onDialogBegin?.Invoke();
+    }
+    private void OnDialogEnd()
+    {
+        onDialogFinish?.Invoke();
     }
 }
