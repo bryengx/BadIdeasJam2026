@@ -280,6 +280,8 @@ MonoBehaviour:
   tasksCompletedText: {fileID: 135102604446302778}
   contentParent: {fileID: 3386298711520840469}
   canvGroup: {fileID: 6583042973745445203}
+  toHideOnTab: {fileID: 6583042973745445203}
+  tabToHideText: {fileID: 0}
 --- !u!225 &6583042973745445203
 CanvasGroup:
   m_ObjectHideFlags: 0

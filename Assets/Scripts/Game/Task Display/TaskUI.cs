@@ -37,12 +37,12 @@ public class TaskUI : MonoBehaviour
     }
     private void Update()
     {
-        if (Keyboard.current.tabKey.wasPressedThisFrame && doingTask)
-        {
-            showingTaskUi = !showingTaskUi;
-        }
-        tabToHideText.text = showingTaskUi ? "Press TAB to hide" : "Press TAB to unhide";
-        toHideOnTab.alpha = showingTaskUi ? 1f : 0f ;
+        //if (Keyboard.current.tabKey.wasPressedThisFrame && doingTask)
+        //{
+        //    showingTaskUi = !showingTaskUi;
+        //}
+        //tabToHideText.text = showingTaskUi ? "Press TAB to hide" : "Press TAB to unhide";
+        //toHideOnTab.alpha = showingTaskUi ? 1f : 0f ;
     }
     private void ShowTasks(TaskMaker.Task[] tasks)
     {
