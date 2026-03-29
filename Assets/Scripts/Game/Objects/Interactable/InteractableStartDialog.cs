@@ -29,7 +29,7 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAddi
     {
         playerObj = player;
 
-        Dialog.CallDialog(speakerInfo, false, BeforeDialog, AfterDialog,true);
+        Dialog.CallDialogs?.Invoke(speakerInfo, false, BeforeDialog, AfterDialog,true);
 
         //dialog.StartDialog(this, speakerInfo, false);
         //DialogOnTrigger.OnTriggerDialog(null, speakerInfo, false);

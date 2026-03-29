@@ -14,7 +14,7 @@ public class DialogOnTrigger : MonoBehaviour
 
     [SerializeField] private UnityEvent onDialogBegin;
     [SerializeField] private UnityEvent onDialogFinish;
-
+    [SerializeField] private float delayVeforOnEndDialog = 0f;
     private bool debounce = false;
     private void OnValidate()
     {
@@ -38,7 +38,7 @@ public class DialogOnTrigger : MonoBehaviour
 
     public void TriggerDialog()
     {
-        Dialog.CallDialog?.Invoke(dialogs, isHighPriority, OnDialogBegin, OnDialogEnd, alwaysCallOnEndFunction);
+        Dialog.CallDialogs?.Invoke(dialogs, isHighPriority, OnDialogBegin, OnDialogEnd, alwaysCallOnEndFunction);
     }
 
     private void OnDialogBegin()
@@ -46,6 +46,11 @@ public class DialogOnTrigger : MonoBehaviour
         onDialogBegin?.Invoke();
     }
     private void OnDialogEnd()
+    {
+        Invoke("D", delayVeforOnEndDialog);
+        
+    }
+    void D()
     {
         onDialogFinish?.Invoke();
     }

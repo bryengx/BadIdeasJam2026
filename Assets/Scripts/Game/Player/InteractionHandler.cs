@@ -44,10 +44,10 @@ public class InteractionHandler : MonoBehaviour
                 IInteractable[] allItems = selectedObj.GetComponents<IInteractable>();
                 foreach (var item in allItems)
                 {
+                    if (interactionInstances.ContainsKey(selectedObj))
+                        interactionInstances[selectedObj].SetActive(false);
                     item?.Interact(player);
                 }
-                //IInteractable interactable = selectedObj.GetComponent<IInteractable>();
-                //interactable?.Interact(player);
             }
         }
     }

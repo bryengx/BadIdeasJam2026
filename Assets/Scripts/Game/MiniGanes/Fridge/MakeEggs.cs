@@ -39,6 +39,7 @@ public class MakeEggs : MonoBehaviour,IInteractable
             player.canMove = !stoveShowing;
             ToggleStove();
         }
+        player.canMove = !stoveShowing;
     }
     private void ToggleStove()
     {
@@ -46,7 +47,6 @@ public class MakeEggs : MonoBehaviour,IInteractable
     }
     private void SayMissingStuff()
     {
-        Dialog.DialogInfo[] info = new Dialog.DialogInfo[] { speaker };
-        Dialog.CallDialog(info, true);
+        Dialog.CallDialog(speaker, true);
     }
 }

@@ -17,7 +17,7 @@ public class LoopingCorridors : MonoBehaviour
             if (maxCount == 0)
             {
                 debounce = true;
-                Dialog.CallDialog?.Invoke(dialogs, isHighPriority);
+                Dialog.CallDialogs?.Invoke(dialogs, isHighPriority);
             }
         }
     }

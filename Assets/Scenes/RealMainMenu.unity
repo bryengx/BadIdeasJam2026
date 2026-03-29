@@ -29778,6 +29778,8 @@ MonoBehaviour:
 
     bryengx
 
+    Delani92m
+
     ---'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aced4d11206fc9d44a49acd4a9791056, type: 2}
@@ -29918,7 +29920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.1, y: 39.81}
+  m_AnchoredPosition: {x: 31.1, y: 37.92}
   m_SizeDelta: {x: 10, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1827837526
