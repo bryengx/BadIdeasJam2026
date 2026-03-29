@@ -8,7 +8,7 @@ public class OpenCloseFridge : MonoBehaviour,IInteractable
     public void Interact(PlayerController2D player)
     {
         open = !open;
-
+        player.canMove = !open;
         ToggleView();
     }
     private void ToggleView()

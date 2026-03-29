@@ -20,6 +20,7 @@ public class CompleteTask : MonoBehaviour
 
     private void Start()
     {
+        if (taskMaker == null) Debug.LogError("Task maker is null. Add it in inspector!");
         player = GameObject.FindGameObjectWithTag("Player");
 
         sqrDistanc = triggerDistance * triggerDistance;
@@ -49,10 +50,12 @@ public class CompleteTask : MonoBehaviour
         }
     }
     //Also called by other classes for specific actioned task complte
-    public void TaskComplete()
+    public bool TaskComplete()
     {
         if(taskMaker != null)
-            taskCompleted = taskMaker.OnCompleteTask.Invoke(taskName);
+            return taskCompleted = taskMaker.OnCompleteTask.Invoke(taskName);
+
+        return false;
     }
     private void OnDrawGizmos()
     {

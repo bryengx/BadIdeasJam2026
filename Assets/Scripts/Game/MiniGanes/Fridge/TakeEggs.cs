@@ -6,8 +6,7 @@ public class TakeEggs : MonoBehaviour
     [SerializeField] private MakeEggs makeEggs;
     [SerializeField] private bool isEgg = true;
     [SerializeField] private LayerMask fridgeItemsLayer;
-    private DialogOnTrigger dialogTrigger;
-
+    [SerializeField] Dialog.DialogInfo cheaseDialog;
     private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -26,7 +25,7 @@ public class TakeEggs : MonoBehaviour
                         Debug.Log(hitCollider.gameObject.name);
                         if(isEgg == false)
                         {
-                            dialogTrigger?.TriggerDialog();
+                            Dialog.CallDialog.Invoke(cheaseDialog,false);
                         }
                         else
                         {
@@ -34,7 +33,7 @@ public class TakeEggs : MonoBehaviour
                             makeEggs.eggs = gameObject;
                             gameObject.SetActive(false);
                         }
-                            
+                        enabled = false;    
                     }
                 }
             }

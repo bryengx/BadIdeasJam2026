@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using static DialogOnTrigger;
 
@@ -22,10 +23,24 @@ public class Dialog : MonoBehaviour
     /// <param name="OnDialogStartFunction">Pass in a function you would like to be called is starting</param>
     /// <param name="triggerOnFailFunction">Must the on end function still be called if the dialog was interupted or failed?</param>
     /// <param name="highPriority">Is dialog of high priority or low. Higher removes any low qeued dialogs to show this one. and also higher priority dialogs can overtake each other. so..</param>
+    /// <param name="dialog">An array of text to be shown for the player to read.</param>
+    public delegate void OnTriggerDialogs(DialogInfo[] dialog,bool highPriority = false, Action OnDialogStartFunction = null,
+        Action OnDialogEndFunction = null, bool triggerOnFailFunction = false);
+    /// <summary>
+    /// Dialog delagate.
+    /// </summary>
+    /// <param name="OnDialogEndFunction">Pass in a function you would like to be called wgen dialog is finished</param>
+    /// <param name="OnDialogStartFunction">Pass in a function you would like to be called is starting</param>
+    /// <param name="triggerOnFailFunction">Must the on end function still be called if the dialog was interupted or failed?</param>
+    /// <param name="highPriority">Is dialog of high priority or low. Higher removes any low qeued dialogs to show this one. and also higher priority dialogs can overtake each other. so..</param>
     /// <param name="dialog">Text to be shown for the player to read.</param>
-    public delegate void OnTriggerDialog(DialogInfo[] dialog,bool highPriority, Action OnDialogStartFunction = null,
+    public delegate void OnTriggerDialog(DialogInfo dialog,bool highPriority = false, Action OnDialogStartFunction = null,
         Action OnDialogEndFunction = null, bool triggerOnFailFunction = false);
 
+    /// <summary>
+    /// Call an array dialog to be shown
+    /// </summary>
+    public static OnTriggerDialogs CallDialogs;
     /// <summary>
     /// Call dialog to be shown
     /// </summary>
@@ -52,6 +67,7 @@ public class Dialog : MonoBehaviour
 
     private IDialogAdditionalActions additionalActions;
 
+    private QueuedDialog currentDialog = new QueuedDialog();
     private Queue<QueuedDialog> dialogsQueued = new Queue<QueuedDialog>();
     private bool showingText = false;
     #endregion
@@ -71,11 +87,13 @@ public class Dialog : MonoBehaviour
     public class DialogInfo
     {
         public string name;
+        public bool repeatable;
 
         [Tooltip("If is player, theres no need to fill in images and name.")]
         public bool isPlayer;
         public Sprite charImage;
         public List<DialogText> text;
+        public UnityEvent onSpeakEnded;
     }
 
     public struct QueuedDialog
@@ -100,24 +118,34 @@ public class Dialog : MonoBehaviour
     }
     private void OnEnable()
     {
+        CallDialogs += StartDialog;
         CallDialog += StartDialog;
         OnDialogEnd += OnEndDialogFunction;
     }
     private void OnDisable()
     {
+        CallDialogs -= StartDialog;
         CallDialog -= StartDialog;
         OnDialogEnd -= OnEndDialogFunction;
     }
     public void StartDialog(IDialogAdditionalActions actions, DialogInfo[] dialInfo, bool highPriority)
     {
         additionalActions = actions;
-        CallDialog?.Invoke(dialInfo, highPriority);
+        CallDialogs?.Invoke(dialInfo, highPriority);
     }
     private void Update()
     {
         if (showingText) canvGroup.alpha = 1f;
         else canvGroup.alpha = 0f;
     }
+
+    //Call start dialog without an array
+    private void StartDialog(DialogInfo dialInfo, bool highPriority, Action OnDialogStartFunc, Action OnDialogEndFunc, bool triggerOnFail)
+    {
+        DialogInfo[] toArray = new DialogInfo[] { dialInfo };
+        StartDialog(toArray,highPriority,OnDialogStartFunc,OnDialogEndFunc,triggerOnFail);
+    }
+    //Call start dialog with an array
     private void StartDialog(DialogInfo[] dialInfo, bool highPriority, Action OnDialogStartFunc,Action OnDialogEndFunc, bool triggerOnFail)
     {
         if (dialInfo.Length == 0)
@@ -131,6 +159,11 @@ public class Dialog : MonoBehaviour
             if (highPriority)
             {
                 StopAllCoroutines();
+                if(currentDialog.triggerOnFail)
+                {
+                    currentDialog.onEndFunction?.Invoke();
+                    currentDialog.onEndFunction = null;
+                }
                 if(dialogsQueued.Count > 0)
                 {
                     foreach (QueuedDialog dialog in dialogsQueued)
@@ -157,12 +190,27 @@ public class Dialog : MonoBehaviour
         }
         OnDialogStartFunc?.Invoke();
         showingText = true;
+
+        currentDialog. onEndFunction = OnDialogEndFunc;
+        currentDialog. triggerOnFail = triggerOnFail;
+
         StartCoroutine(ShowDialog(dialInfo, OnDialogEndFunc, triggerOnFail));
     }
 
     private IEnumerator ShowDialog(DialogInfo[] dialogs,Action OnDialogEndFunc, bool triggerOnFail)
     {
         additionalActions?.BeforeDialog();
+
+        if (dialogs[0].repeatable)
+        {
+            foreach(DialogInfo dialog in dialogs)
+            {
+                foreach(DialogText text in dialog.text)
+                {
+                    text.read = false;
+                }
+            }
+        }
         //InventoryUI.instance.Hide();
         if (dialogs.Length == 0)
         {
@@ -207,6 +255,7 @@ public class Dialog : MonoBehaviour
                     }
 
                     yield return new WaitForSeconds(waitDuration);
+                    speaker.onSpeakEnded?.Invoke();
                 }
                 if(dialogs.Length >1) index = index == 0 ? 1 : 0;
 

@@ -33,8 +33,7 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
     {
         ///Use event instead of searcing for an object type since its more perfomanca
 
-        //FindFirstObjectByType<Dialog>().StartDialog(null,info, false);
-        Dialog.CallDialog?.Invoke( info, false);
+        Dialog.CallDialogs?.Invoke( info, false);
     }
     void SwapPictures(PlayerController2D player)
     {

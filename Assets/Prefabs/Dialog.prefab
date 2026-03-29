@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4449088061418162000}
   - component: {fileID: 9084092624483236731}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SpeakerName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,12 +170,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
+  m_fontSize: 18
   m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 10
-  m_fontSizeMax: 50
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
+  m_fontSizeMax: 18
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -357,9 +357,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Do this
-
-'
+  m_text: Do this right now or else im gonna find you in your sleep and take your
+    ps5 and dunk it in the toilet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aced4d11206fc9d44a49acd4a9791056, type: 2}
   m_sharedMaterial: {fileID: 7092021855124568152, guid: aced4d11206fc9d44a49acd4a9791056, type: 2}
@@ -386,12 +385,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 12.25
   m_fontSizeBase: 14
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 1.39
-  m_fontSizeMax: 50
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 20
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -488,7 +487,7 @@ MonoBehaviour:
   nameText: {fileID: 9084092624483236731}
   textMesh: {fileID: 7873392828135707207}
   typingSpeed: 0.025
-  playerImage: {fileID: 6042378114960933089, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
+  playerImage: {fileID: -6379007246315953982, guid: 391dc015e3899594e896167b32acfcc8, type: 3}
   playerName: Miro
 --- !u!222 &6753606906990271198
 CanvasRenderer:

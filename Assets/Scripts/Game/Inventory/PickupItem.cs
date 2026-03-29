@@ -42,9 +42,8 @@ public class PickupItem : MonoBehaviour, IInteractable
                 // got to add "character name" and picture to Player class to we can auto fill all fields for specific character who picked the item
             }
             notify.text[0].text = "I found a " + item.itemName;
-            Dialog.DialogInfo[] d = new Dialog.DialogInfo[1] { notify };
 
-            Dialog.CallDialog?.Invoke(d, true);
+            Dialog.CallDialog?.Invoke(notify, true);
             Destroy(gameObject);
         }
     }
