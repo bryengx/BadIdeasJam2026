@@ -36,6 +36,7 @@ public class MakeEggs : MonoBehaviour,IInteractable
             completeTask.TaskComplete();
 
             stoveShowing = !stoveShowing;
+            player.canMove = !stoveShowing;
             ToggleStove();
         }
     }
