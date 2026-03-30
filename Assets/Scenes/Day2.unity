@@ -3002,7 +3002,7 @@ MonoBehaviour:
     isPlayer: 1
     charImage: {fileID: 5641160408871043892, guid: c342863a43b662b4d967f05d73c71e8d, type: 3}
     text:
-    - duration: 2
+    - duration: 1
       text: Jesus it's freezing in here.
       read: 0
     onSpeakEnded:
@@ -76115,11 +76115,8 @@ MonoBehaviour:
     isPlayer: 0
     charImage: {fileID: -2428245290989514644, guid: 2546d94e79ad4264c90a24f2b5799e7c, type: 3}
     text:
-    - duration: 1.5
+    - duration: 1
       text: '"Ring Ring"'
-      read: 0
-    - duration: 2
-      text: '"Ring RIng"'
       read: 0
     onSpeakEnded:
       m_PersistentCalls:
@@ -80185,17 +80182,17 @@ MonoBehaviour:
     isPlayer: 1
     charImage: {fileID: 0}
     text:
-    - duration: 3
+    - duration: 1.5
       text: ...
       read: 0
     - duration: 2
       text: Weird
       read: 0
-    - duration: 4
+    - duration: 2
       text: It's hot.
       read: 0
-    - duration: 3
-      text: Alright let me go make some food.
+    - duration: 2
+      text: Anywho let's go make some food..
       read: 0
     onSpeakEnded:
       m_PersistentCalls:
@@ -82238,7 +82235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1610024326
 Transform:
   m_ObjectHideFlags: 0
@@ -144860,18 +144857,6 @@ MonoBehaviour:
   onDialogBegin:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 149064764}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -145590,6 +145575,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3277951548586127505, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3386298711520840469, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -145620,7 +145609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6583042973745445203, guid: 1f5b911d75c8ff04c9ed3909c5ded241, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
