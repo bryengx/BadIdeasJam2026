@@ -488,7 +488,7 @@ MonoBehaviour:
   textMesh: {fileID: 7873392828135707207}
   typingSpeed: 0.025
   playerImage: {fileID: -6379007246315953982, guid: 391dc015e3899594e896167b32acfcc8, type: 3}
-  playerName: Miro
+  playerName: Mira
 --- !u!222 &6753606906990271198
 CanvasRenderer:
   m_ObjectHideFlags: 0

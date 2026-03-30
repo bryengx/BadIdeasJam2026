@@ -384,6 +384,12 @@ public class PlayerController2D : MonoBehaviour
 
             if (velocityY < -maxFallSpeed)
                 velocityY = -maxFallSpeed;
+
+            if (revertGravity)
+            {
+                if (velocityY > maxFallSpeed)
+                    velocityY = maxFallSpeed;
+            }
         }
         else if (!isWallSticking && !isDashing)
         {

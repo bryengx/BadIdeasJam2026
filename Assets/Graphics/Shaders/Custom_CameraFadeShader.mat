@@ -25,7 +25,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Fade: 0.38209802
+    - _Fade: 1
     - _Softness: 0.333
     m_Colors: []
   m_BuildTextureStacks: []

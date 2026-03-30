@@ -641,7 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa18b4fd6e96884eaa4197aa91592ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableChangeScene
-  doorClips: []
   nextScene: Day3
 --- !u!61 &414757150
 BoxCollider2D:
@@ -1234,9 +1233,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ada9c9d86275ec649a014452affc66b8, type: 3}
+  m_Resource: {fileID: 8300000, guid: 40b7176436c96d14189d39288bd928d3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -46145,10 +46144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa18b4fd6e96884eaa4197aa91592ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableChangeScene
-  doorClips:
-  - {fileID: 8300000, guid: 3c1672b6966284f57be0d0020f5e1c18, type: 3}
-  - {fileID: 8300000, guid: 38f39fc8158cc46e38953d820454343f, type: 3}
-  - {fileID: 8300000, guid: bb7c474a12cf94727afd5ec0d061efeb, type: 3}
   nextScene: Day1
 --- !u!61 &1933545300
 BoxCollider2D:
