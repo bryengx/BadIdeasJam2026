@@ -7,6 +7,7 @@ public class TakeEggs : MonoBehaviour
     [SerializeField] private bool isEgg = true;
     [SerializeField] private LayerMask fridgeItemsLayer;
     [SerializeField] Dialog.DialogInfo cheaseDialog;
+    [SerializeField] private AudioClip takeEggClip;
     private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -30,6 +31,10 @@ public class TakeEggs : MonoBehaviour
                         else
                         {
                             Debug.Log("I have eggs!");
+                            if (takeEggClip != null)
+                            {
+                                AudioSource.PlayClipAtPoint(takeEggClip, transform.position);
+                            }
                             makeEggs.eggs = gameObject;
                             gameObject.SetActive(false);
                         }

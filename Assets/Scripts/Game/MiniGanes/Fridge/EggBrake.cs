@@ -7,6 +7,9 @@ public class EggBrake : SpriteDrag
     [SerializeField] private Sprite crackedSprite;
     [SerializeField] private float breakSPeed = 5f;
     [SerializeField] protected Dialog.DialogInfo failToBrakeText;
+    [SerializeField] private AudioClip[] eggNotBrokenClips;
+    [SerializeField] private AudioClip eggBrokenClip;
+    [SerializeField] private MakeEggs makeEggs;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -16,11 +19,16 @@ public class EggBrake : SpriteDrag
 
         if (impactSpeed >= breakSPeed)
         {
+            if (eggBrokenClip != null)
+            {
+                AudioSource.PlayClipAtPoint(eggBrokenClip, transform.position);
+            }
             StartCoroutine(BreakEgg());
             
         }
         else
         {
+            PlayRandomSFX();
             Dialog.CallDialog?.Invoke(failToBrakeText, true);
         }
     }
@@ -29,6 +37,10 @@ public class EggBrake : SpriteDrag
     {
         GetComponent<SpriteRenderer>().sprite = crackedSprite;
         endDrag = true;
+        if (makeEggs != null)
+        {
+            makeEggs.SetEggBroken(true);
+        }
         yield return new WaitForSeconds(1f);
 
         bool succ = GetComponent<CompleteTask>().TaskComplete();
@@ -45,5 +57,12 @@ public class EggBrake : SpriteDrag
             Debug.LogWarning("Failed to complete task. Try again");
         }
         
+    }
+    
+    private void PlayRandomSFX()
+    {
+        if (eggNotBrokenClips == null || eggNotBrokenClips.Length == 0) return;
+        int randomIndex = Random.Range(0, eggNotBrokenClips.Length);
+        AudioSource.PlayClipAtPoint(eggNotBrokenClips[randomIndex], transform.position);
     }
 }

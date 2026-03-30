@@ -12,6 +12,9 @@ public class Broom : MonoBehaviour, IInteractable
     [SerializeField] private CompleteTask completeTask;
     [SerializeField] private float swipOffset = 3f;
     [SerializeField] private float swipTime = 1f;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickUpClip;
+    [SerializeField] private AudioClip[] swipeClips;
 
     private float cooldDownTimer;
 
@@ -42,6 +45,10 @@ public class Broom : MonoBehaviour, IInteractable
     public void Interact(PlayerController2D player)
     {
         pickedUp = true;
+        if (audioSource != null && pickUpClip != null)
+        {
+            audioSource.PlayOneShot(pickUpClip);
+        }
         transform.SetParent(player.transform);
         transform.localPosition = Vector3.zero;
 
@@ -64,6 +71,7 @@ public class Broom : MonoBehaviour, IInteractable
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 canClean = true;
+                PlayRandomSwipe();
                 StartCoroutine(Swip(swipTurn));
                 swipTurn = !swipTurn;
             }
@@ -115,5 +123,12 @@ public class Broom : MonoBehaviour, IInteractable
             
         }
         
+    }
+    private void PlayRandomSwipe()
+    {
+        if (audioSource == null || swipeClips.Length == 0) return;
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        AudioClip clip = swipeClips[Random.Range(0, swipeClips.Length)];
+        audioSource.PlayOneShot(clip);
     }
 }

@@ -11,6 +11,9 @@ public class WashDishes : MonoBehaviour, IInteractable
     [SerializeField] private Transform plateParent;
     [SerializeField] private GameObject dirts;
     [SerializeField] private GameObject instructions;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] pickUpPlates;
+    [SerializeField] private AudioClip[] putDownPlates;
     private Transform dirtParent;
 
     private Camera mainCam;
@@ -49,6 +52,7 @@ public class WashDishes : MonoBehaviour, IInteractable
             Collider2D hitCollider = Physics2D.OverlapPoint(mousePos, plateLayer);
             if (hitCollider != null)
             {
+                PlayRandomPickUp();
                 SpriteRenderer rend = hitCollider.GetComponent<SpriteRenderer>();
                 rend.sortingOrder++;
 
@@ -72,6 +76,7 @@ public class WashDishes : MonoBehaviour, IInteractable
     }
     private void StackPlates(Color color)
     {
+        PlayRandomPutDown();
         foreach(Transform plate in cleanPlateStack)
         {
             if (plate.gameObject.activeSelf == false)
@@ -81,6 +86,23 @@ public class WashDishes : MonoBehaviour, IInteractable
                 plate.gameObject.SetActive(true);
                 break;
             }
+        }
+    }
+    private void PlayRandomPickUp()
+    {
+        if (pickUpPlates.Length > 0)
+        {
+            int randomIndex = Random.Range(0, pickUpPlates.Length);
+            audioSource.PlayOneShot(pickUpPlates[randomIndex]);
+        }
+    }
+
+    private void PlayRandomPutDown()
+    {
+        if (putDownPlates.Length > 0)
+        {
+            int randomIndex = Random.Range(0, putDownPlates.Length);
+            audioSource.PlayOneShot(putDownPlates[randomIndex]);
         }
     }
 }

@@ -307,9 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskAudioManager
   audioSource: {fileID: -5789661220473824439}
-  taskShowSFX: {fileID: 8300000, guid: 5bfad31c7508443a1b2dbcffff1af26b, type: 3}
-  taskCheckSFX: {fileID: 8300000, guid: 477a9b909ed4641f2b77deeb41dc3498, type: 3}
-  taskCompleteSFX: {fileID: 8300000, guid: dbd1c23d20a394b5faabb83a0d9c0ed3, type: 3}
+  taskShowSFX: {fileID: 8300000, guid: c7ee5860d3b644839a58b1e9356f05b8, type: 3}
+  taskCheckSFX: {fileID: 8300000, guid: 47cfb2a99011644fb9b345fb0f484129, type: 3}
+  taskCompleteSFX: {fileID: 8300000, guid: 6b54d0a7411b0428ea49a7467326ef4c, type: 3}
 --- !u!82 &-5789661220473824439
 AudioSource:
   m_ObjectHideFlags: 0
