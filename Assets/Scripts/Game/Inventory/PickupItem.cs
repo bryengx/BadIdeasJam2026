@@ -39,6 +39,7 @@ public class PickupItem : MonoBehaviour, IInteractable
             if (notify.text.Count == 0)
             {
                 notify.text = notify.text.Concat(new[] { new Dialog.DialogText() }).ToList();
+                notify.isPlayer = true;
                 // got to add "character name" and picture to Player class to we can auto fill all fields for specific character who picked the item
             }
             notify.text[0].text = "I found a " + item.itemName;
