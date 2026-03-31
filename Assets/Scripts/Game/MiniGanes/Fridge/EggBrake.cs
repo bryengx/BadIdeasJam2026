@@ -7,6 +7,7 @@ public class EggBrake : SpriteDrag
     [SerializeField] private Sprite crackedSprite;
     [SerializeField] private float breakSPeed = 5f;
     [SerializeField] protected Dialog.DialogInfo failToBrakeText;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] eggNotBrokenClips;
     [SerializeField] private AudioClip eggBrokenClip;
     [SerializeField] private MakeEggs makeEggs;
@@ -61,8 +62,10 @@ public class EggBrake : SpriteDrag
     
     private void PlayRandomSFX()
     {
-        if (eggNotBrokenClips == null || eggNotBrokenClips.Length == 0) return;
+        if (eggNotBrokenClips == null || eggNotBrokenClips.Length == 0 || audioSource == null) return;
         int randomIndex = Random.Range(0, eggNotBrokenClips.Length);
-        AudioSource.PlayClipAtPoint(eggNotBrokenClips[randomIndex], transform.position);
+        AudioClip clip = eggNotBrokenClips[randomIndex];
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.PlayOneShot(clip);
     }
 }
