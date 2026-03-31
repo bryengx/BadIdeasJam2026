@@ -548,6 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 1227633947}
+  portalClips: []
 --- !u!61 &43424859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1868,6 +1869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 2010949783}
+  portalClips: []
 --- !u!61 &159239956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1994,6 +1996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &194280090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3325,6 +3328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &329170556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6890,6 +6894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &758476226
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79925,6 +79930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &1084480789
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -80754,6 +80760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &1177377535
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81425,6 +81432,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips:
+  - {fileID: 8300000, guid: c536c144d332147d3939be1b746a858a, type: 3}
+  - {fileID: 8300000, guid: be011278d17564754a64c10890f667f8, type: 3}
+  - {fileID: 8300000, guid: 4e3acb7153d5e40ffaf7799a5ef4b340, type: 3}
 --- !u!61 &1227633948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81699,6 +81710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 1177377534}
+  portalClips: []
 --- !u!61 &1267067446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81973,6 +81985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4ba820ece33b749a9f9279e73586c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwapGravity
+  audioSource: {fileID: 0}
+  creatureClip: {fileID: 0}
 --- !u!61 &1297192469
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83558,6 +83572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4ba820ece33b749a9f9279e73586c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwapGravity
+  audioSource: {fileID: 0}
+  creatureClip: {fileID: 0}
 --- !u!114 &1425565520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83853,6 +83869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 1769876362}
+  portalClips: []
 --- !u!61 &1464311790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85023,6 +85040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 1632804258}
+  portalClips: []
 --- !u!61 &1543737951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85914,6 +85932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 1543737950}
+  portalClips: []
 --- !u!61 &1632804259
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86693,6 +86712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &1712782080
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -87058,6 +87078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 1464311789}
+  portalClips: []
 --- !u!61 &1769876363
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146799,6 +146820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4ba820ece33b749a9f9279e73586c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwapGravity
+  audioSource: {fileID: 0}
+  creatureClip: {fileID: 0}
 --- !u!114 &1940735023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147453,6 +147476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 159239955}
+  portalClips: []
 --- !u!61 &2010949784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147860,6 +147884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   targetPortal: {fileID: 0}
+  portalClips: []
 --- !u!61 &2074565557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148583,6 +148608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed707dd6d2454ebbadb0b0176b0162e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneAudioManager
+  audioSource: {fileID: 2104029463}
   phonePickUpClip: {fileID: 8300000, guid: 266d10c8b369148b8a474570be3d86c1, type: 3}
   phoneHangUpClip: {fileID: 8300000, guid: 002a8f485dfb84c87ab49ac5296c08c2, type: 3}
   pickupDelay: 0
@@ -149085,6 +149111,10 @@ PrefabInstance:
     - target: {fileID: 3182485443932664925, guid: 610eb4568ffc2f84fb23668b1ca730d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762763565697062389, guid: 610eb4568ffc2f84fb23668b1ca730d9, type: 3}
+      propertyPath: baseVolume
+      value: 0.275
       objectReference: {fileID: 0}
     - target: {fileID: 7712451535183974087, guid: 610eb4568ffc2f84fb23668b1ca730d9, type: 3}
       propertyPath: farColor.a

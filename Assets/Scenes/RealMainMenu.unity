@@ -641,6 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa18b4fd6e96884eaa4197aa91592ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableChangeScene
+  doorOpenClips:
+  - {fileID: 8300000, guid: 9e69072f856944dc9bf9b5bc96a2dff2, type: 3}
   nextScene: Day3
 --- !u!61 &414757150
 BoxCollider2D:
@@ -1640,7 +1642,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b123c2a952088344bdb01d862bac4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableTeleport
-  doorOpenClips: []
+  doorOpenClips:
+  - {fileID: 8300000, guid: 3c1672b6966284f57be0d0020f5e1c18, type: 3}
+  - {fileID: 8300000, guid: 38f39fc8158cc46e38953d820454343f, type: 3}
+  - {fileID: 8300000, guid: bb7c474a12cf94727afd5ec0d061efeb, type: 3}
   nextLocation: {fileID: 1959679297}
 --- !u!61 &664202039
 BoxCollider2D:
@@ -46144,6 +46149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa18b4fd6e96884eaa4197aa91592ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableChangeScene
+  doorOpenClips: []
   nextScene: Day1
 --- !u!61 &1933545300
 BoxCollider2D:
@@ -46611,7 +46617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b123c2a952088344bdb01d862bac4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableTeleport
-  doorOpenClips: []
+  doorOpenClips:
+  - {fileID: 8300000, guid: 3c1672b6966284f57be0d0020f5e1c18, type: 3}
+  - {fileID: 8300000, guid: 38f39fc8158cc46e38953d820454343f, type: 3}
+  - {fileID: 8300000, guid: bb7c474a12cf94727afd5ec0d061efeb, type: 3}
   nextLocation: {fileID: 664202040}
 --- !u!61 &1959679296
 BoxCollider2D:

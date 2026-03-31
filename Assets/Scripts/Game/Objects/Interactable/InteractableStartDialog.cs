@@ -4,6 +4,9 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAddi
 {
     public Dialog.DialogInfo[] speakerInfo;
     private PlayerController2D playerObj;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip monsterClip;
+    private bool hasPlayedSound = false;
 
     public void AfterDialog()
     {
@@ -17,6 +20,11 @@ public class InteractableStartDialog : MonoBehaviour, IInteractable, IDialogAddi
     {
         playerObj.canMove = false;
         Debug.Log("BeforeDialog");
+        if (!hasPlayedSound && audioSource != null && monsterClip != null)
+        {
+            audioSource.PlayOneShot(monsterClip, 0.325f);
+            hasPlayedSound = true;
+        }
     }
     void StartFollowingPlayer()
     {

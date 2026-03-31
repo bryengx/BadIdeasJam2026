@@ -6,6 +6,7 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private Dialog.DialogInfo notify;
+    [SerializeField] private AudioClip pickupSound;
     public InventoryItem item;
     public int amount = 1;
 
@@ -36,6 +37,15 @@ public class PickupItem : MonoBehaviour, IInteractable
         if (inventory != null)
         {
             inventory.AddItem(item, amount);
+            if (pickupSound != null)
+            {
+                AudioSource source = player.GetComponent<AudioSource>();
+                if (source != null)
+                {
+                    source.pitch = 1f;
+                    source.PlayOneShot(pickupSound, 1f);
+                }
+            }
             if (notify.text.Count == 0)
             {
                 notify.text = notify.text.Concat(new[] { new Dialog.DialogText() }).ToList();

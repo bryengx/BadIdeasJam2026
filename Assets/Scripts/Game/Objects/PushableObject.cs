@@ -2,9 +2,15 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Collections;
 
 public class PushableObject : MonoBehaviour, IInteractable
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] moveClips;
+    private float fadeOutTime = 0.2f;
+    private Coroutine fadeCoroutine;
+    bool wasMoving = false;
     public Transform[] positions;
     public float moveSpeed = 1;
     bool isMoving = false;
@@ -28,6 +34,10 @@ public class PushableObject : MonoBehaviour, IInteractable
     }
     void FixedUpdate()
     {
+        if (isMoving && !wasMoving)
+        {
+            PlayRandomMoveClip();
+        }
         if (isMoving)
         {
             if (Vector3.Distance(transform.position, nextPoint.position) > moveSpeed * Time.deltaTime)
@@ -38,8 +48,10 @@ public class PushableObject : MonoBehaviour, IInteractable
             {
                 currentPoint = nextPoint;
                 isMoving = false;
+                StopMoveClip();
             }
         }
+        wasMoving = isMoving;
     }
 
     public void Interact(PlayerController2D player)
@@ -86,5 +98,33 @@ public class PushableObject : MonoBehaviour, IInteractable
             return rightPoints[0];
         }
         return null;
+    }
+    private void PlayRandomMoveClip()
+    {
+        if (audioSource == null || moveClips == null || moveClips.Length == 0) return;
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.volume = 0.5f;
+        audioSource.clip = moveClips[Random.Range(0, moveClips.Length)];
+        audioSource.Play();
+    }
+    private void StopMoveClip()
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+            fadeCoroutine = StartCoroutine(FadeOutAndStop());
+        }
+    }
+    private IEnumerator FadeOutAndStop()
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeOutTime;
+            yield return null;
+        }
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }

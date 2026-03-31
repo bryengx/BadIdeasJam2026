@@ -11,6 +11,8 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
     public GameObject newRoomObj;
     public Portal sourcePortal;
     public Portal destinationPortal;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip swapClip;
 
     public Dialog.DialogInfo[] lookAtPicturesDialog;
     void Start()
@@ -37,6 +39,10 @@ public class InteractableDeckPuzzle : MonoBehaviour, IInteractable
     }
     void SwapPictures(PlayerController2D player)
     {
+        if (audioSource != null && swapClip != null)
+        {
+            audioSource.PlayOneShot(swapClip, 0.9f);
+        }
         player.RemoveItem(newPicture);
         oldRoomObj.SetActive(false);
         newRoomObj.SetActive(true);

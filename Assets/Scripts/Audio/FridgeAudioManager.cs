@@ -40,6 +40,6 @@ public class FridgeAudioManager : MonoBehaviour
     private void PlayRandom(AudioClip[] clips)
     {
         if (clips.Length == 0 || audioSource == null) return;
-        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)], 0.95f);
     }
 }

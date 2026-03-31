@@ -13,6 +13,8 @@ public class Interactable3RoomsPuzzle : MonoBehaviour, IInteractable
     public string posTextCenter;
     public GameObject pictureFrame;
     public MultiPositionPlatform[] plaforms;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] frameMoveClips;
     void Start()
     {
         if(plaforms.Length > 0)
@@ -48,6 +50,12 @@ public class Interactable3RoomsPuzzle : MonoBehaviour, IInteractable
         selectedPosition = newPosition;
         pictureFrame.transform.position = selectedPosition.position;
         MovePlatformsToPosition();
+        if (audioSource != null && frameMoveClips != null && frameMoveClips.Length > 0)
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            int index = Random.Range(0, frameMoveClips.Length);
+            audioSource.PlayOneShot(frameMoveClips[index], 0.35f);
+        }
     }
     void MovePlatformsToPosition()
     {

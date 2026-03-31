@@ -17,7 +17,7 @@ public class InteractableTeleport : MonoBehaviour, IInteractable
         if (source != null)
         {
             source.pitch = Random.Range(0.85f, 1.15f);
-            source.PlayOneShot(doorOpenClips[Random.Range(0, doorOpenClips.Length)], 0.7f);
+            source.PlayOneShot(doorOpenClips[Random.Range(0, doorOpenClips.Length)], 0.6f);
         }
     }
 }

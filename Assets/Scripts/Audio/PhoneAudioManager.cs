@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PhoneAudioManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip phonePickUpClip;
     [SerializeField] private AudioClip phoneHangUpClip;
     [SerializeField] private float pickupDelay = 0.5f;
@@ -30,15 +31,7 @@ public class PhoneAudioManager : MonoBehaviour
 
     private void PlaySound(AudioClip clip)
     {
-        if (clip == null) return;
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            AudioSource source = player.GetComponent<AudioSource>();
-            if (source != null)
-            {
-                source.PlayOneShot(clip);
-            }
-        }
+        if (clip == null || audioSource == null) return;
+        audioSource.PlayOneShot(clip);
     }
 }

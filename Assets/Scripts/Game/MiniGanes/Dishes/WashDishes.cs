@@ -93,7 +93,7 @@ public class WashDishes : MonoBehaviour, IInteractable
         if (pickUpPlates.Length > 0)
         {
             int randomIndex = Random.Range(0, pickUpPlates.Length);
-            audioSource.PlayOneShot(pickUpPlates[randomIndex]);
+            audioSource.PlayOneShot(pickUpPlates[randomIndex], 0.85f);
         }
     }
 
@@ -102,7 +102,7 @@ public class WashDishes : MonoBehaviour, IInteractable
         if (putDownPlates.Length > 0)
         {
             int randomIndex = Random.Range(0, putDownPlates.Length);
-            audioSource.PlayOneShot(putDownPlates[randomIndex]);
+            audioSource.PlayOneShot(putDownPlates[randomIndex], 0.9f);
         }
     }
 }

@@ -22,7 +22,7 @@ public class OnInteractDo : MonoBehaviour, IInteractable
         AudioSource source = player.GetComponent<AudioSource>();
         if (source != null)
         {
-            source.PlayOneShot(heaterSound, 0.5f);
+            source.PlayOneShot(heaterSound, 0.4f);
         }
     }
 }

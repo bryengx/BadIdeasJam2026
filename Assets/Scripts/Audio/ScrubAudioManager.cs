@@ -5,7 +5,7 @@ public class ScrubAudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] scrubClips;
-    public float fadeSpeed = 30f;
+    public float fadeSpeed = 25f;
     private float targetVolume = 0f;
 
     void Update()
@@ -19,7 +19,7 @@ public class ScrubAudioManager : MonoBehaviour
                 PickRandomClip();
                 audioSource.Play();
             }
-            targetVolume = 1f;
+            targetVolume = 0.85f;
 
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
             float mouseSpeed = mouseDelta.magnitude;
@@ -44,3 +44,4 @@ public class ScrubAudioManager : MonoBehaviour
         }
     }
 }
+

@@ -153,7 +153,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
   notify:
     name: 
+    repeatable: 0
+    isPlayer: 0
     charImage: {fileID: 0}
     text: []
+    onSpeakEnded:
+      m_PersistentCalls:
+        m_Calls: []
+  pickupSound: {fileID: 8300000, guid: f744ab67d72cc4a178acfcf8a5fd93a0, type: 3}
   item: {fileID: 11400000, guid: beae635efe3c28648b9a168fba83840f, type: 2}
   amount: 1

@@ -129,6 +129,6 @@ public class Broom : MonoBehaviour, IInteractable
         if (audioSource == null || swipeClips.Length == 0) return;
         audioSource.pitch = Random.Range(0.85f, 1.15f);
         AudioClip clip = swipeClips[Random.Range(0, swipeClips.Length)];
-        audioSource.PlayOneShot(clip);
+        audioSource.PlayOneShot(clip, 0.9f);
     }
 }
